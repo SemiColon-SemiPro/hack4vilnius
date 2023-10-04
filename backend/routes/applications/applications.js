@@ -1,15 +1,15 @@
 import { Router } from 'express';
-import db from '../data/index.js';
+import db from '../../data/index.js';
 import applicationsSchema from './schemas.js';
 
-const router = Router();
+const applicationsRouter = Router();
 
-router.route('/').get((req, res) => {
+applicationsRouter.route('/').get((req, res) => {
   const applications = db.prepare('SELECT * FROM applications').all();
   res.send(applications);
 });
 
-router.route('/new').put(async (req, res) => {
+applicationsRouter.route('/new').put(async (req, res) => {
   try {
     const result = await applicationsSchema.validateAsync(req.body);
     const new_application = null;
@@ -20,7 +20,7 @@ router.route('/new').put(async (req, res) => {
   }
 });
 
-router
+applicationsRouter
   .route('/:id')
   .get((req, res) => {
     const data = {
@@ -64,4 +64,4 @@ router
     res.send(`Application with id ${id} deleted`);
   });
 
-export default router;
+export default applicationsRouter;

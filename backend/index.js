@@ -1,6 +1,6 @@
 import express from 'express';
-import router from './routes/applications.js';
-
+import applicationsRouter from './routes/applications/applications.js';
+import applicantsRouter from './routes/applicants/applicants.js';
 
 const app = express();
 
@@ -8,8 +8,8 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const appRouter = router;
-app.use('/api/v1/applications', appRouter);
+app.use('/api/v1/applications', applicationsRouter);
+app.use('/api/v1/applicants', applicantsRouter);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
