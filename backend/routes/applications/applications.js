@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import db from '../../data/index.js';
-import applicationsSchema from './schemas.js';
+import db from '../../database/index.js';
+import applicationsSchema from './schema.js';
 
 const applicationsRouter = Router();
 
