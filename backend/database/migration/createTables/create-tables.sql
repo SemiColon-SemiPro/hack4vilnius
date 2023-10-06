@@ -30,11 +30,15 @@ CREATE TABLE IF NOT EXISTS applicants (
 CREATE TABLE IF NOT EXISTS houses (
   id INTEGER PRIMARY KEY,
   available INTEGER NOT NULL,
-  address_id INTEGER NOT NULL,
+  street TEXT NOT NULL,
+  house_number INTEGER NOT NULL,
+  flat_number TEXT,
+  useful_mq TEXT NOT NULL,
+  category TEXT NOT NULL,
+  unique_id TEXT NOT NULL,
   assigned_to INTEGER,
   created_at TEXT,
   updated_at TEXT,
-  FOREIGN KEY(address_id) REFERENCES addresses(id),
   FOREIGN KEY(assigned_to) REFERENCES applicants(id)
 );
 
@@ -48,17 +52,6 @@ CREATE TABLE IF NOT EXISTS statuses (
 CREATE TABLE IF NOT EXISTS types (
   id INTEGER PRIMARY KEY,
   description TEXT UNIQUE NOT NULL,
-  created_at TEXT,
-  updated_at TEXT
-);
-
-
-CREATE TABLE IF NOT EXISTS addresses (
-  id INTEGER PRIMARY KEY,
-  street TEXT UNIQUE NOT NULL,
-  house_number INTEGER,
-  flat_number TEXT,
-  zip TEXT NOT NULL,
   created_at TEXT,
   updated_at TEXT
 );

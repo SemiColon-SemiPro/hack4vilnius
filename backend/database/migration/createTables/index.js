@@ -1,4 +1,4 @@
-import readSqlScript from '../utils.js';
+import { readSqlScript } from '../utils.js';
 
 const createTables = async database => {
   const createTablesSql = await readSqlScript(
