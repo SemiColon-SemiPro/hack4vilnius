@@ -5,13 +5,11 @@ BEGIN TRANSACTION;
 CREATE TABLE IF NOT EXISTS applications (
   id INTEGER PRIMARY KEY,
   applicant_id INTEGER NOT NULL,
-  type_id INTEGER NOT NULL,
-  status_id INTEGER NOT NULL,
+  status TEXT NOT NULL,
+  score INTEGER NOT NULL,
   created_at TEXT,
   updated_at TEXT,
-  FOREIGN KEY(applicant_id) REFERENCES applicants(id),
-  FOREIGN KEY(type_id) REFERENCES types(id),
-  FOREIGN KEY(status_id) REFERENCES statuses(id)
+  FOREIGN KEY(applicant_id) REFERENCES applicants(id)
 );
 
 CREATE TABLE IF NOT EXISTS applicants (
@@ -20,7 +18,12 @@ CREATE TABLE IF NOT EXISTS applicants (
   middle_name TEXT,
   last_name TEXT NOT NULL,
   age INTEGER NOT NULL,
-  score INTEGER,
+  family_size INTEGER,
+  disability_level INTEGER,
+  refugee INTEGER,
+  financial_bracket INTEGER,
+  priority INTEGER,
+  eligible INTEGER,
   address_id INTEGER,
   created_at TEXT,
   updated_at TEXT,
@@ -30,28 +33,29 @@ CREATE TABLE IF NOT EXISTS applicants (
 CREATE TABLE IF NOT EXISTS houses (
   id INTEGER PRIMARY KEY,
   available INTEGER NOT NULL,
-  street TEXT NOT NULL,
-  house_number INTEGER NOT NULL,
-  flat_number TEXT,
   useful_mq TEXT NOT NULL,
   category TEXT NOT NULL,
+  capacity INTEGER,
   unique_id TEXT NOT NULL,
+  floor INTEGER,
+  rooms_number INTEGER,
+  elevator INTEGER,
   assigned_to INTEGER,
+  address_id INTEGER,
   created_at TEXT,
   updated_at TEXT,
-  FOREIGN KEY(assigned_to) REFERENCES applicants(id)
+  FOREIGN KEY(assigned_to) REFERENCES applicants(id),
+  FOREIGN KEY(address_id) REFERENCES addresses(id)
 );
 
-CREATE TABLE IF NOT EXISTS statuses (
+CREATE TABLE IF NOT EXISTS addresses (
   id INTEGER PRIMARY KEY,
-  description TEXT UNIQUE NOT NULL,
-  created_at TEXT,
-  updated_at TEXT
-);
-
-CREATE TABLE IF NOT EXISTS types (
-  id INTEGER PRIMARY KEY,
-  description TEXT UNIQUE NOT NULL,
+  city TEXT,
+  district TEXT NOT NULL,
+  street TEXT NOT NULL,
+  house_number TEXT NOT NULL,
+  flat_number TEXT,
+  zip TEXT,
   created_at TEXT,
   updated_at TEXT
 );
