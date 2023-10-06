@@ -1,11 +1,12 @@
 import { Router } from 'express';
 import db from '../../database/index.js';
 import applicationsSchema from './schema.js';
+import { getApplicationById, getApplications } from './database-handler.js';
 
 const applicationsRouter = Router();
 
 applicationsRouter.route('/').get((req, res) => {
-  const applications = db.prepare('SELECT * FROM applications').all();
+  const applications = getApplications();
   res.send(applications);
 });
 
@@ -28,9 +29,7 @@ applicationsRouter
       id: parseInt(req.params.id),
     };
 
-    const application = db
-      .prepare('SELECT * FROM applications WHERE id = ?')
-      .get([data.id]);
+    const application = getApplicationById(data.id);
 
     if (!application)
       res.status(404).send(`Application with id ${data.id} not found`);
