@@ -5,8 +5,6 @@ const parseRequest = (requestObj) => {
 		id: crypto.randomUUID(),
 		status: "new",
 		score: 0,
-		created_at: new Date().toISOString(),
-		updated_at: new Date().toISOString(),
 		occupied_property: requestObj.applicationType.tenantsOfSocialHousing,
 		useful_mq: requestObj.applicantDetails.sizeOfOccupiedProperty,
 	};
@@ -21,6 +19,7 @@ const parseRequest = (requestObj) => {
 			email: requestObj.applicantDetails.email,
 			phoneNumber: requestObj.applicantDetails.phoneNumber,
 			disabilityLevel: requestObj.applicantDetails.disabilityLevel,
+			//TODO: add address info
 		},
 	];
 

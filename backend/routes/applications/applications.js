@@ -5,6 +5,7 @@ import {
 	getApplicationById,
 	getApplications,
 	getNumberOfApplicants,
+	insertApplication,
 } from "./database-handler.js";
 import parseRequest from "./request-parser.js";
 
@@ -45,8 +46,11 @@ applicationsRouter.route("/").get((req, res) => {
 
 applicationsRouter.route("/new").put(async (req, res) => {
 	try {
-		const validatedRequest = await applicationsSchema.validateAsync(req.body);
+		const validatedRequest = await applicationsSchema.validateAsync(
+			req.body,
+		);
 		const parsedRequest = parseRequest(validatedRequest);
+		insertApplication(parsedRequest.applicationData);
 		res.status(200).json(parsedRequest);
 	} catch (e) {
 		res.status(400).json({ code: 400, message: e.message });
