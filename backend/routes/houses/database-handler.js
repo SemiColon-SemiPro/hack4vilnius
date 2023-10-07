@@ -14,6 +14,7 @@ SET available = CASE
 END
 WHERE id = ?
 `;
+const SELECT_HOUSES_BY_CAPACITY = "SELECT * FROM houses WHERE capacity = ?";
 
 // functions
 export const getHouses = () => {
@@ -44,4 +45,10 @@ export const updateHouseAvailability = (id) => {
 	const house = db.prepare(UPDATE_HOUSE_AVAILABILITY).run(id);
 	console.debug(`House with id ${id} changed availability: `, house);
 	return house;
+};
+
+export const getHouseByGroup = (capacity) => {
+	const housesList = db.prepare(SELECT_HOUSES_BY_CAPACITY).all(capacity);
+	console.debug(`Houses number with capacity ${capacity} retrieved: `, housesList.length);
+	return housesList;
 };
