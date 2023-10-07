@@ -1,31 +1,54 @@
 <template>
-  <div class="grid-container">
-    <!-- To-Do Items & Notification -->
-    <div class="todo-notification">
-      <div class="notification">You have 2 new tasks!</div>
-      <ul>
-        <li>Submit the profs from UZT</li>
-        <li>Meeting October 9th, 13:25</li>
-      </ul>
-
-      <!-- Notification (just an example structure) -->
+  <div id="dates">
+    <div id="submit-date">
+      Submission date: {{ formatDate(dateOfSubmission) }}
     </div>
-
-    <!-- Current Number in Waiting List -->
+    <div>You have been in line for {{ daysInLine }} days</div>
+  </div>
+  <div class="grid-container">
+    <div class="todo-notification">
+      <h3 class="notification">You have 2 notifications</h3>
+      <ul>
+        <li>Submit ID of all memebres of your family</li>
+        <li>Get UZT approval</li>
+      </ul>
+    </div>
     <div class="waiting-number">
       <span>You are number</span>
       <h2>5</h2>
       <span>in the waiting list</span>
-      <!-- This is a placeholder number. Replace with your dynamic data. -->
+    </div>
+
+    <div class="waiting-number">
+      <span>There are</span>
+      <h2>4</h2>
+      <span>availabe houses</span>
     </div>
   </div>
 
   <!-- Application Status -->
   <div class="app-status">
-    Your application is pending.
-    <!-- Replace with your dynamic data. -->
+    <PBar />
   </div>
 </template>
+
+<script setup lang="ts">
+import PBar from "../components/progressBar.vue";
+const dateOfSubmission: any = new Date(2023, 9, 1);
+const currentDate: any = new Date();
+const msDifference = currentDate - dateOfSubmission;
+
+const daysInLine = Math.floor(msDifference / (1000 * 60 * 60 * 24));
+
+function formatDate(date) {
+  const day = date.getDate().toString().padStart(2, "0"); // ensures a 2-digit day
+  const month = (date.getMonth() + 1).toString().padStart(2, "0"); // ensures a 2-digit month
+  const year = date.getFullYear();
+
+  return `${day}/${month}/${year}`;
+}
+console.log(daysInLine);
+</script>
 
 <style scoped>
 span {
@@ -33,10 +56,19 @@ span {
 }
 .grid-container {
   display: grid;
-  grid-template-columns: 30vw 30vw;
+  grid-template-columns: 30vw 30vw 30vw;
   gap: 5vw; /* Adjust as needed for space between the grid items */
 }
-
+#dates {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-bottom: 50px;
+  font-size: 24px;
+  font-weight: 600;
+}
 .todo-notification {
   /* Style as needed */
   border: 1px solid #ccc;
@@ -69,5 +101,3 @@ span {
   margin-top: 20px; /* Adjust as needed */
 }
 </style>
-
-<script setup></script>

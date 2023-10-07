@@ -6,10 +6,14 @@
           <div id="proxies">
             <label class="name">Useful links:</label>
             <div class="links">
-              <a href="https://smartproxy.com/proxies/residential-proxies/pricing">
+              <a
+                href="https://smartproxy.com/proxies/residential-proxies/pricing"
+              >
                 Resi</a
               >
-              <a href="https://smartproxy.com/proxies/mobile/pricing"> Mobile</a>
+              <a href="https://smartproxy.com/proxies/mobile/pricing">
+                Mobile</a
+              >
               <a
                 href="https://smartproxy.com/proxies/dedicated-datacenter-proxies/pricing"
               >
@@ -20,16 +24,18 @@
               >
                 ISP DC</a
               >
-              <a href="https://smartproxy.com/proxies/datacenter-proxies/pricing">
+              <a
+                href="https://smartproxy.com/proxies/datacenter-proxies/pricing"
+              >
                 DC Shared</a
               >
               <a href="https://smartproxy.com/proxies/site-unblocker/pricing"
                 >Unblocker</a
               >
             </div>
+          </div>
         </div>
       </div>
-    </div>
     </div>
   </div>
 </template>
