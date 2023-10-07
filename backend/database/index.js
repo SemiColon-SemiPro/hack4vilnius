@@ -6,7 +6,7 @@ import { addApplicants } from "./migration/addApplicants/index.js";
 import application_applicants_json from "./data/application_data.json" assert { type: "json" };
 import addCapacity from "./migration/addCapacity/index.js";
 import alterApplications from "./migration/migration1/index.js";
-// import alterApplications from "./migration/migration1/index.js";
+import alterApplicants from "./migration/migration2/index.js";
 
 const createDb = (dbPath) => {
 	const db = sqlite(dbPath);
@@ -57,9 +57,23 @@ try {
 	const countIfExistsOccupiedProperty = await db
 		.prepare("SELECT COUNT(occupied_property) FROM applications;")
 		.get();
-	console.info("Occupied properties and useful_mq columns are already available.");
+	console.info(
+		"Occupied properties and useful_mq columns are already available.",
+	);
 } catch (e) {
 	alterApplications(db);
+}
+
+// migration 2 - add cols to applicants
+try {
+	const countIfExistsEmails = await db
+		.prepare("SELECT COUNT(email) FROM applicants;")
+		.get();
+	console.info(
+		"Email, phone_number, applicant_type columns are already available.",
+	);
+} catch (e) {
+	alterApplicants(db);
 }
 
 export default db;
