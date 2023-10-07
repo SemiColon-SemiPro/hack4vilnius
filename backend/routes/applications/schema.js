@@ -7,6 +7,7 @@ const applicationsSchema = Joi.object({
 		firstName: Joi.string().required(),
 		lastName: Joi.string().required(),
 		email: Joi.string().email().required(),
+		dateOfBirth: Joi.string().required(),
 		phoneNumber: Joi.string()
 			.regex(/^[+][0-9]+$/)
 			.required(),

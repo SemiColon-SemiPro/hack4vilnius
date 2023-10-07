@@ -12,13 +12,7 @@ GROUP BY application_id
 HAVING COUNT() = ?;
 `;
 
-// export const parseRequest = (requestJson) => {
-// 	console.log(requestJson)
-// 	let applicants = []
-// 	let application = {}
 
-// 	sizeOfOccupiedProperty;
-// }
 
 // functions
 export const getApplications = () => {
