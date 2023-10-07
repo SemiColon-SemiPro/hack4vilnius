@@ -1,17 +1,47 @@
 <template>
   <div id="display-main">
-    <div class="title-holder">
-      <h1 class="tutorial-title">Welcome to the Social Housing Vilnius</h1>
+    <div id="text1">
+      <h1>Vilnius social housing</h1>
+    </div>
+    <div id="image1">
+      <img src="../../images/house.png" alt="house">
     </div>
   </div>
 </template>
 
 <style>
+
+#display-main {
+  min-height: 58vh;
+  display: grid;
+  grid-area: 
+  'text-1'
+  'image-1';
+}
+
+#text1 {
+  grid-area: 'text-1';
+  align-self: center;
+}
+
+#image1 {
+  grid-area: 'image-1';
+  align-self: center;
+}
+
+
 .title-holder {
   display: flex;
   justify-content: center;
+  align-content: center;
   margin-bottom: 30px;
   margin-top: 30px;
+}
+
+.title-holder img {
+  min-height: 50px;
+  min-width: auto;
+  max-height: 200px;
 }
 
 .tutorial-title {

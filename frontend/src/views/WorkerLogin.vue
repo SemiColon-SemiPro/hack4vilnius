@@ -1,7 +1,7 @@
 <template>
   <h1 class="title">Worker Login</h1>
   <div class="login-holder">
-    <div>will need to find a good pic here</div>
+    <img id="worker-login-img" src="../../images/worker.png" alt="good worker">
     <LogIn />
   </div>
 </template>
@@ -33,6 +33,17 @@ import LogIn from "../components/LogIn.vue";
   text-align: center;
   margin-bottom: 60px;
   margin-top: 60px;
+}
+
+#worker-login-img {
+  margin: 30px;
+  min-height: 100px;
+  min-width: 100px;
+  max-width: 400px;
+}
+
+.login-holder {
+  min-height: 37vh;
 }
 
 @keyframes textclip {

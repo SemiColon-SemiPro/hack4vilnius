@@ -3,10 +3,10 @@
 
   <UserView />
   <div class="links-to-lists">
-    <RouterLink :to="{ name: 'UserList' }"
-      >Check out your position in the List</RouterLink
+    <RouterLink :to="{ name: 'UserList' }" class="btn btn-primary"
+      >Check out your position in the waiting list</RouterLink
     >
-    <RouterLink :to="{ name: 'HouseList' }"
+    <RouterLink :to="{ name: 'HouseList' }" class="btn btn-primary"
       >Check out the list of available properties</RouterLink
     >
   </div>
@@ -19,5 +19,6 @@ import UserView from "../components/userView.vue";
 .links-to-lists {
   display: flex;
   justify-content: space-between;
+  margin: 20px;
 }
 </style>
