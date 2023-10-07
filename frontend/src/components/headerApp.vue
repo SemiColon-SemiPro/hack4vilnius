@@ -21,7 +21,8 @@ a {
   min-height: 100px;
   width: 100%;
   display: flex;
-  background: linear-gradient(to right, rgb(189, 56, 1), black);
+
+  background: linear-gradient(to right, rgb(1, 86, 189), black);
 }
 
 #navigation {
