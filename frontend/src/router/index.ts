@@ -9,6 +9,7 @@ import ApplicantRegistration from '../views/ApplicantRegistrtion.vue';
 import UserList from '../views/userListRanking.vue';
 import HouseList from '../views/housesList.vue';
 
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [

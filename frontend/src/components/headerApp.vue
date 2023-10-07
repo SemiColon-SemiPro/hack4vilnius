@@ -41,6 +41,7 @@ a {
 }
 
 #navigation a {
+  text-decoration: none;
   color: rgb(246, 244, 244);
   display: inline-block;
   padding: 10px;
