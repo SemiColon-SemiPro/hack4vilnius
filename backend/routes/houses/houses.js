@@ -1,5 +1,9 @@
 import { Router } from "express";
-import { getHouses, getHouseById } from "./database-handler.js";
+import {
+	getHouses,
+	getHouseById,
+	updateHouseAvailability,
+} from "./database-handler.js";
 
 const housesRouter = Router();
 
@@ -8,8 +12,13 @@ housesRouter.route("/").get((req, res) => {
 });
 
 housesRouter.route("/:id").get((req, res) => {
-	const id = parseInt(req.params.id);
+	const id = req.params.id;
 	res.send(getHouseById(id));
+});
+
+housesRouter.route("/available/:id").put((req, res) => {
+	const id = req.params.id;
+	res.send(updateHouseAvailability(id));
 });
 
 export default housesRouter;

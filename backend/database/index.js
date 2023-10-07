@@ -19,19 +19,4 @@ if (countOfHouses.count == 0) {
 	addHousesAndAddresses(db);
 }
 
-const db = createDb('./database/database.db')
-
-// add tables if not available
-createTables(db)
-
-// add houses if not available
-const countOfHouses = db.prepare('SELECT COUNT(*) count FROM houses').get()
-console.info(`Total houses in db: ${countOfHouses.count}`)
-if (countOfHouses.count == 0) {
-    addHouses(db)
-}
-
-const db = createDb('./database/database.db')
-createTables(db)
-
-export default db
+export default db;
