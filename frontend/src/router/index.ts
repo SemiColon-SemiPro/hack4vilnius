@@ -6,6 +6,8 @@ import ApplicantView from '../views/ApplicantView.vue';
 import WorkerLogin from '../views/WorkerLogin.vue';
 import UserLogin from '../views/UserLogin.vue';
 import ApplicantRegistration from '../views/ApplicantRegistrtion.vue';
+import UserList from '../views/userListRanking.vue';
+import HouseList from '../views/housesList.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -44,6 +46,18 @@ const router = createRouter({
       name: 'ApplicantLogin',
 
       component: UserLogin,
+    },
+    {
+      path: '/user-list-ranking',
+      name: 'UserList',
+
+      component: UserList,
+    },
+    {
+      path: '/apt-list',
+      name: 'HouseList',
+
+      component: HouseList,
     },
   ],
 });

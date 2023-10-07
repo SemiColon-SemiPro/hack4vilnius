@@ -41,21 +41,6 @@
         <a href="https://smartproxy.com/scraping/no-code/pricing"
           >No-code Scraper</a
         >
-        =======
-        <a href="https://smartproxy.com/scraping/ecommerce/pricing"
-          >E-com API</a
-        >
-        <a href="https://smartproxy.com/scraping/web/pricing">WEB API</a>
-        <a href="https://smartproxy.com/scraping/social-media/pricing"
-          >SM API</a
-        >
-        <a href="https://smartproxy.com/scraping/ecommerce/pricing"
-          >E-com API</a
-        >
-        <a href="https://smartproxy.com/scraping/no-code/pricing"
-          >No-code Scraper</a
-        >
-        >>>>>>> feature/importFE
       </div>
     </div>
     <div id="internal">
