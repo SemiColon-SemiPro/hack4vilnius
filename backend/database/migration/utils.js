@@ -36,3 +36,11 @@ export const readHousesCsv = async (csvPath) => {
 
 	return housesList;
 };
+
+export const readApplications = async (jsonFile) => {
+	return jsonFile.applications;
+};
+
+export const readApplicants = async (jsonFile) => {
+	return jsonFile.applicants;
+};
