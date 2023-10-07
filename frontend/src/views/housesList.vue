@@ -1,51 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-const houses = ref([
-  {
-    size: '100 sqm',
-    numberOfRooms: 3,
-    floor: 2,
-    address: '123 Pigu Street, Vilnius',
-    price: '200 UEUR',
-  },
-  {
-    size: '150 sqm',
-    numberOfRooms: 4,
-    floor: 5,
-    address: '456 Zidu Avenue, Vilnius',
-    price: '25 EUR',
-  },
-  {
-    size: '80 sqm',
-    numberOfRooms: 2,
-    floor: 1,
-    address: '79 Egle Blvd, Vilnius',
-    price: '180',
-  },
-  {
-    size: '100 sqm',
-    numberOfRooms: 3,
-    floor: 2,
-    address: '123 Pigu Street, Vilnius',
-    price: '200 UEUR',
-  },
-  {
-    size: '150 sqm',
-    numberOfRooms: 4,
-    floor: 5,
-    address: '456 Zidu Avenue, Vilnius',
-    price: '25 EUR',
-  },
-  {
-    size: '80 sqm',
-    numberOfRooms: 2,
-    floor: 1,
-    address: '79 Egle Blvd, Vilnius',
-    price: '180',
-  },
-]);
-
 const listOfHouses = ref<any[]>([]); // initialize it as an empty array or null
 
 async function fetchHouses() {
@@ -73,9 +28,9 @@ fetchHouses();
     <table>
       <thead>
         <tr>
-          <th>Size</th>
+          <th>Ranking</th>
           <th>Number of Rooms</th>
-          <th>Floor</th>
+          <th>Size</th>
           <th>Address</th>
           <th>Price</th>
         </tr>
@@ -84,6 +39,8 @@ fetchHouses();
         <tr v-for="house in listOfHouses" :key="house.id">
           <td>{{ house.id }}</td>
           <td>{{ house.available }}</td>
+          <td>{{ house.useful_mq }}</td>
+          <td>{{ house.house_number }} {{ house.street }}</td>
         </tr>
       </tbody>
     </table>

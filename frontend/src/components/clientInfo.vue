@@ -21,16 +21,19 @@
         <input type="file" id="passport" ref="passport" />
 
         <label for="numFamilyMembers">Number of family members:</label>
-        <input type="number" id="numFamilyMembers" ref="numFamilyMembers" />
+        <input type="number" id="numFamilyMembers" v-model="numFamilyMembers" />
+        <div v-for="person in numFamilyMembers">
+          <label for="familyPassports"
+            >ID/passport for all family members:</label
+          >
 
-        <label for="familyPassports">ID/passport for all family members:</label>
-
-        <input
-          type="file"
-          id="familyPassports"
-          ref="familyPassports"
-          multiple
-        />
+          <input
+            type="file"
+            id="familyPassports"
+            ref="familyPassports"
+            multiple
+          />
+        </div>
 
         <label for="birthCertificates"
           >Birth certificates for family members under 16:</label
@@ -76,13 +79,14 @@
   </div>
 </template>
 
-<script setup>
-import { ref } from 'vue';
+<script setup lang="ts">
+import { ref, computed } from 'vue';
 
 // Document Upload refs
 const incomeStatement = ref();
 const passport = ref();
-const numFamilyMembers = ref();
+const numFamilyMembers = ref(0);
+
 const familyPassports = ref();
 const birthCertificates = ref();
 

@@ -4,10 +4,10 @@
   <UserView />
   <div class="links-to-lists">
     <RouterLink :to="{ name: 'UserList' }"
-      >Check out the list of available properties</RouterLink
+      >Check out your position in the List</RouterLink
     >
     <RouterLink :to="{ name: 'HouseList' }"
-      >Check out the list of applicatnts</RouterLink
+      >Check out the list of available properties</RouterLink
     >
   </div>
 </template>
