@@ -4,7 +4,8 @@ import { getHouses, getHouseById } from './database-handler.js';
 const housesRouter = Router();
 
 housesRouter.route('/').get((req, res) => {
-  res.send(getHouses());
+  const housesList = getHouses();
+  res.status(200).json({ houses: housesList });
 });
 
 housesRouter.route('/:id').get((req, res) => {
