@@ -22,24 +22,6 @@ if (countOfHouses.count == 0) {
 	addHousesAndAddresses(db);
 }
 
-<<<<<<< HEAD
-const db = createDb('./database/database.db')
-
-// add tables if not available
-createTables(db)
-
-// add houses if not available
-const countOfHouses = db.prepare('SELECT COUNT(*) count FROM houses').get()
-console.info(`Total houses in db: ${countOfHouses.count}`)
-if (countOfHouses.count == 0) {
-    addHouses(db)
-}
-
-const db = createDb('./database/database.db')
-createTables(db)
-
-export default db
-=======
 // add initial applications batch
 const countOfApplications = db
 	.prepare("SELECT COUNT(*) count FROM applications")
@@ -59,4 +41,3 @@ if (countOfApplicants.count == 0) {
 }
 
 export default db;
->>>>>>> 875f2412f0a82e6633991741e7c3e05bd53eb65c
