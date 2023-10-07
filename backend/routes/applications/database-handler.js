@@ -15,26 +15,60 @@ const INSERT_APPLICATION =
 	"INSERT INTO applications (id, status, score, created_at, updated_at, occupied_property, useful_mq) VALUES (?, ?, ?, ?, ?, ?, ?)";
 const INSERT_APPLICANT =
 	"INSERT INTO applicants (first_name, last_name, age, disability_level, refugee, income, flag, address_id, application_id, created_at, updated_at, email, phone_number, applicant_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+const INSERT_ADDRESS =
+	"INSERT INTO addresses (city, district, street, house_number, flat_number, zip, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+const SELECT_ADDRESS_ID =
+	"SELECT id FROM addresses WHERE street = ? AND house_number = ? AND created_at = ?";
 
 // functions
-export const insertApplicants = (applicantsData) => {
-	applicantsData.forEach((applicant) => {
+export const getAddressId = (addressData, timestamp) => {
+	const id = db
+		.prepare(SELECT_ADDRESS_ID)
+		.get([addressData.street, addressData.houseNumber, timestamp]);
 
+	return id;
+};
+
+export const insertAddress = async (addressData) => {
+	const timestamp = new Date().toISOString();
+	const stmt = db.prepare(INSERT_ADDRESS);
+	stmt.run([
+		addressData.city,
+		addressData.district,
+		addressData.street,
+		addressData.houseNumber,
+		addressData.flatNumber,
+		addressData.zipCode,
+		timestamp,
+		timestamp,
+	]);
+	console.info(`Address entered in database.`);
+	return timestamp;
+};
+
+export const insertApplicants = async (
+	applicationId,
+	addressId,
+	applicantsData,
+) => {
+	const timestamp = new Date().toISOString();
+	applicantsData.forEach((applicant) => {
 		const stmt = db.prepare(INSERT_APPLICANT);
+		console.log(applicant);
 		stmt.run([
 			applicant.firstName,
 			applicant.lastName,
 			applicant.dateOfBirth,
 			applicant.disabilityLevel,
-			applicant.refugee ? applicant.refugee : 0,
-			applicant.income ? applicant.income : 0.0,
-			applicant.flag ? applicant.flag : 0,
-			applicant.address_id,
-			applicant.application_id,
-			new Date().toISOString(),
-			new Date().toISOString(),
-			applicant.email,
-			applicant.phoneNumber,
+			0,
+			applicant.type === "applicant" ? applicant.income : 0,
+			0,
+			addressId,
+			applicationId,
+			timestamp,
+			timestamp,
+			applicant.email ? applicant.email : null,
+			applicant.phoneNumber ? applicant.phoneNumber : null,
 			applicant.type,
 		]);
 
@@ -44,13 +78,14 @@ export const insertApplicants = (applicantsData) => {
 	});
 };
 
-export const insertApplication = (applicationData) => {
+export const insertApplication = async (applicationData) => {
+	const timestamp = new Date().toISOString();
 	db.prepare(INSERT_APPLICATION).run([
 		applicationData.id,
 		applicationData.status,
 		applicationData.score,
-		new Date().toISOString(),
-		new Date().toISOString(),
+		timestamp,
+		timestamp,
 		applicationData.occupied_property ? "Private" : "Social",
 		applicationData.useful_mq,
 	]);
@@ -59,19 +94,19 @@ export const insertApplication = (applicationData) => {
 	);
 };
 
-export const getApplications = () => {
+export const getApplications = async () => {
 	const applications = db.prepare(SELECT_APPLICAITONS).all();
 	console.debug("Number of applications retrieved: ", applications.length);
 	return applications;
 };
 
-export const getApplicationById = (id) => {
+export const getApplicationById = async (id) => {
 	const application = db.prepare(SELECT_APPLICATION_BY_ID).get(id);
 	console.debug(`Application with id ${id} retrieved: `, application);
 	return application;
 };
 
-export const getNumberOfApplicants = (num) => {
+export const getNumberOfApplicants = async (num) => {
 	const applications = db
 		.prepare(SELECT_APPLICATIONS_WITH_NUM_APPLICANTS)
 		.all(num);
