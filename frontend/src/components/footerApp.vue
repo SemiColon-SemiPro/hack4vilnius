@@ -3,24 +3,60 @@
     <div id="proxies">
       <label class="name">Useful links:</label>
       <div class="links">
-        <a href="https://smartproxy.com/proxies/residential-proxies/pricing"> Resi</a>
+        <a href="https://smartproxy.com/proxies/residential-proxies/pricing">
+          Resi</a
+        >
         <a href="https://smartproxy.com/proxies/mobile/pricing"> Mobile</a>
-        <a href="https://smartproxy.com/proxies/dedicated-datacenter-proxies/pricing">
+        <a
+          href="https://smartproxy.com/proxies/dedicated-datacenter-proxies/pricing"
+        >
           Dedicated DC</a
         >
-        <a href="https://smartproxy.com/proxies/static-isp-residential-proxies/pricing"> ISP DC</a>
-        <a href="https://smartproxy.com/proxies/datacenter-proxies/pricing"> DC Shared</a>
-        <a href="https://smartproxy.com/proxies/site-unblocker/pricing">Unblocker</a>
+        <a
+          href="https://smartproxy.com/proxies/static-isp-residential-proxies/pricing"
+        >
+          ISP DC</a
+        >
+        <a href="https://smartproxy.com/proxies/datacenter-proxies/pricing">
+          DC Shared</a
+        >
+        <a href="https://smartproxy.com/proxies/site-unblocker/pricing"
+          >Unblocker</a
+        >
       </div>
     </div>
     <div id="apis">
       <label class="name">Public Pricing (API):</label>
       <div class="links">
-        <a href="https://smartproxy.com/scraping/ecommerce/pricing">E-com API</a>
+        <<<<<<< HEAD
+        <a href="https://smartproxy.com/scraping/ecommerce/pricing"
+          >E-com API</a
+        >
         <a href="https://smartproxy.com/scraping/web/pricing">WEB API</a>
-        <a href="https://smartproxy.com/scraping/social-media/pricing">SM API</a>
-        <a href="https://smartproxy.com/scraping/ecommerce/pricing">E-com API</a>
-        <a href="https://smartproxy.com/scraping/no-code/pricing">No-code Scraper</a>
+        <a href="https://smartproxy.com/scraping/social-media/pricing"
+          >SM API</a
+        >
+        <a href="https://smartproxy.com/scraping/ecommerce/pricing"
+          >E-com API</a
+        >
+        <a href="https://smartproxy.com/scraping/no-code/pricing"
+          >No-code Scraper</a
+        >
+        =======
+        <a href="https://smartproxy.com/scraping/ecommerce/pricing"
+          >E-com API</a
+        >
+        <a href="https://smartproxy.com/scraping/web/pricing">WEB API</a>
+        <a href="https://smartproxy.com/scraping/social-media/pricing"
+          >SM API</a
+        >
+        <a href="https://smartproxy.com/scraping/ecommerce/pricing"
+          >E-com API</a
+        >
+        <a href="https://smartproxy.com/scraping/no-code/pricing"
+          >No-code Scraper</a
+        >
+        >>>>>>> feature/importFE
       </div>
     </div>
     <div id="internal">
@@ -46,7 +82,8 @@
   width: 100%;
   display: flex;
   justify-content: space-around;
-  background: linear-gradient(to right, rgb(189, 56, 1), black);
+
+  background: linear-gradient(to right, rgb(1, 86, 189), black);
 }
 
 .links {

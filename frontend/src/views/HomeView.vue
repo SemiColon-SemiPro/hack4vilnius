@@ -1,16 +1,7 @@
 <template>
   <div id="display-main">
     <div class="title-holder">
-      <h1 class="tutorial-title">Watch the video before creating your first offer</h1>
-    </div>
-    <div class="iframe-container">
-      <iframe
-        src="https://www.loom.com/embed/bd68e8a012964ae7b4003ebea67d7ff0?sid=6ace769a-a10c-41ae-a783-cae6818bd96e"
-        frameborder="0"
-        webkitallowfullscreen
-        mozallowfullscreen
-        allowfullscreen
-      ></iframe>
+      <h1 class="tutorial-title">Welcome to the Social Housing Vilnius</h1>
     </div>
   </div>
 </template>
