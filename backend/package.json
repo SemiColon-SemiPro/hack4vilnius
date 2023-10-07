@@ -1,21 +1,24 @@
 {
-  "name": "backend",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "vitest",
-    "devStart": "nodemon"
-  },
-  "keywords": [],
-  "author": "Semicolon Semipros",
-  "license": "",
-  "dependencies": {
-    "better-sqlite3": "^8.7.0",
-    "express": "^4.18.2",
-    "joi": "^17.11.0",
-    "nodemon": "^3.0.1",
-    "vitest": "^0.34.6"
-  },
-  "type": "module"
+	"name": "backend",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "vitest",
+		"devStart": "nodemon"
+	},
+	"keywords": [],
+	"author": "Semicolon Semipros",
+	"license": "",
+	"dependencies": {
+		"better-sqlite3": "^8.7.0",
+		"express": "^4.18.2",
+		"joi": "^17.11.0",
+		"nodemon": "^3.0.1",
+		"vitest": "^0.34.6"
+	},
+	"type": "module",
+	"devDependencies": {
+		"prettier": "^3.0.3"
+	}
 }
