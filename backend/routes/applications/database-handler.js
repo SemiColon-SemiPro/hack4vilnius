@@ -12,6 +12,8 @@ GROUP BY application_id
 HAVING COUNT() = ?;
 `;
 
+
+
 // functions
 export const getApplications = () => {
 	const applications = db.prepare(SELECT_APPLICAITONS).all();
