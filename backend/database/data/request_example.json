@@ -1,0 +1,41 @@
+{
+	"applicantDetails": {
+		"personalNumber": "94u0943u5",
+		"firstName": "John",
+		"lastName": "Doe",
+		"email": "john.doe@example.com",
+		"phoneNumber": "123-456-7890",
+		"disabilityLevel": "level1",
+		"householdIncome": 5,
+		"sizeOfOccupiedProperty": "ffpfpfpf",
+		"address": {
+			"city": "How",
+			"district": " deep",
+			"street": "is",
+			"houseNumber": "your",
+			"flatNumber": "love",
+			"zipCode": "it"
+		}
+	},
+	"FamilyMembers": {
+		"count": 2,
+		"familyDetails": [
+			{
+				"name": "Default Name",
+				"lastName": "Default Last Name",
+				"dateOfBirth": "01/01/2000",
+				"disabilityLevel": "level3"
+			},
+			{
+				"name": "Default Name",
+				"lastName": "Default Last Name",
+				"dateOfBirth": "01/01/2000",
+				"disabilityLevel": "level1"
+			}
+		]
+	},
+	"applicationType": {
+		"youngFamilies": false,
+		"tenantsOfSocialHousing": true
+	}
+}

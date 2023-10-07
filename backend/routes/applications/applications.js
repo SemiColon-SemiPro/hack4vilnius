@@ -13,9 +13,7 @@ applicationsRouter.route("/").get((req, res) => {
 applicationsRouter.route("/new").put(async (req, res) => {
 	try {
 		const result = await applicationsSchema.validateAsync(req.body);
-		const new_application = null;
-		// add new application in db
-		res.send(new_application);
+		res.send("passed");
 	} catch (e) {
 		res.status(400).send(e.message);
 	}
