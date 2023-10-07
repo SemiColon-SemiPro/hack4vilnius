@@ -28,7 +28,6 @@
     <div id="apis">
       <label class="name">Public Pricing (API):</label>
       <div class="links">
-        <<<<<<< HEAD
         <a href="https://smartproxy.com/scraping/ecommerce/pricing"
           >E-com API</a
         >

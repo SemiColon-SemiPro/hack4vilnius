@@ -77,7 +77,6 @@
 </template>
 
 <script setup>
-
 import { ref } from 'vue';
 
 // Document Upload refs
@@ -101,7 +100,6 @@ const personsWithoutParentalCare = ref(false);
 const disabledOrChronicIllness = ref(false);
 const tenantsOfSocialHousing = ref(false);
 const general = ref(false);
->>>>>>> feature/importFE
 
 const onSubmit = () => {
   const formData = {
