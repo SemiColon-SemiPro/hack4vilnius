@@ -6,7 +6,7 @@ const applicantsRouter = Router();
 applicantsRouter.route("/").get((req, res) => {
 	const applicantList = getApplicants();
 	if (applicantList.length === 0) {
-		res.status(200).json({
+		res.status(404).json({
 			error: {
 				code: 404,
 				message: "No applicants found in the database",
