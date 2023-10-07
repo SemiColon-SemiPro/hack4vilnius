@@ -8,7 +8,18 @@ import {
 const housesRouter = Router();
 
 housesRouter.route("/").get((req, res) => {
-	res.send(getHouses());
+	const housesList = getHouses();
+	if (housesList.length === 0) {
+		res.status(200).json({
+			error: {
+				code: 404,
+				message: "No houses found in the database",
+			},
+		});
+	}
+	if (housesList.length !== 0) {
+		res.status(200).json({ houses: housesList });
+	}
 });
 
 housesRouter.route("/:id").get((req, res) => {
