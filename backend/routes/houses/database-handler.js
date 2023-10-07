@@ -1,3 +1,4 @@
+// import { runOnce } from "vitest";
 import db from "../../database/index.js";
 
 // queries
@@ -5,6 +6,14 @@ const SELECT_HOUSES = "SELECT * FROM houses";
 const SELECT_HOUSES_BY_AVAILABILITY =
 	"SELECT * FROM houses WHERE available = ?";
 const SELECT_HOUSE_BY_ID = "SELECT * FROM houses WHERE id = ?";
+const UPDATE_HOUSE_AVAILABILITY = `
+UPDATE houses
+SET available = CASE
+  WHEN available = 0 THEN 1
+  ELSE 0
+END
+WHERE id = ?
+`;
 
 // functions
 export const getHouses = () => {
@@ -28,5 +37,11 @@ export const getUnavailableHouses = () => {
 export const getHouseById = (id) => {
 	const house = db.prepare(SELECT_HOUSE_BY_ID).get(id);
 	console.debug(`House with id ${id} retrieved: `, house);
+	return house;
+};
+
+export const updateHouseAvailability = (id) => {
+	const house = db.prepare(UPDATE_HOUSE_AVAILABILITY).run(id);
+	console.debug(`House with id ${id} changed availability: `, house);
 	return house;
 };
