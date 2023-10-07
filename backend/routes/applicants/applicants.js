@@ -1,10 +1,21 @@
 import { Router } from "express";
-import db from "../../database/index.js";
+import { getApplicants } from "./database-handler.js";
 
 const applicantsRouter = Router();
 
 applicantsRouter.route("/").get((req, res) => {
-	res.send("applicants list");
+	const applicantList = getApplicants();
+	if (applicantList.length === 0) {
+		res.status(200).json({
+			error: {
+				code: 404,
+				message: "No applicants found in the database",
+			},
+		});
+	}
+	if (applicantList.length !== 0) {
+		res.status(200).json({ applicant: applicantList });
+	}
 });
 
 export default applicantsRouter;
