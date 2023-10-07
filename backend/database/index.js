@@ -4,6 +4,7 @@ import addHousesAndAddresses from "./migration/addHouses/index.js";
 import { addApplications } from "./migration/addApplications/index.js";
 import { addApplicants } from "./migration/addApplicants/index.js";
 import application_applicants_json from "./data/application_data.json" assert { type: "json" };
+import addCapacity from "./migration/addCapacity/index.js";
 
 const createDb = (dbPath) => {
 	const db = sqlite(dbPath);
@@ -38,6 +39,15 @@ const countOfApplicants = db
 console.info(`Total applicants in db: ${countOfApplicants.count}`);
 if (countOfApplicants.count == 0) {
 	addApplicants(db, application_applicants_json);
+}
+
+// add capacity to houses
+const countOfNullCapacities = await db
+	.prepare("SELECT COUNT(*) count FROM houses WHERE capacity IS NULL")
+	.get();
+console.info(`Total null capacities in db: ${countOfNullCapacities.count}`);
+if (countOfNullCapacities.count > 0) {
+	addCapacity(db);
 }
 
 export default db;
