@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import UserView from '../components/userView.vue';
+import UserView from "../components/userView.vue";
 </script>
 <style>
 .links-to-lists {

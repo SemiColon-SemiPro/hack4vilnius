@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref } from "vue";
 
 const listOfHouses = ref<any[]>([]); // initialize it as an empty array or null
 
 async function fetchHouses() {
   try {
-    const response = await fetch('http://localhost:3000/api/v1/houses');
+    const response = await fetch("http://localhost:3000/api/v1/houses");
     if (!response.ok) {
-      throw new Error('Network response was not ok');
+      throw new Error("Network response was not ok");
     }
 
     const data: any = await response.json();
@@ -15,7 +15,7 @@ async function fetchHouses() {
 
     listOfHouses.value = data.houses; // set the data to listOfHouses ref here
   } catch (error) {
-    console.error('There was a problem fetching houses:', error);
+    console.error("There was a problem fetching houses:", error);
   }
 }
 
@@ -28,19 +28,20 @@ fetchHouses();
     <table>
       <thead>
         <tr>
-          <th>Ranking</th>
+          <th>Type</th>
           <th>Number of Rooms</th>
           <th>Size</th>
           <th>Address</th>
-          <th>Price</th>
+          <th>Floor</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="house in listOfHouses" :key="house.id">
-          <td>{{ house.id }}</td>
-          <td>{{ house.available }}</td>
+          <td>{{ house.category }}</td>
+          <td>{{ house.rooms_number }}</td>
           <td>{{ house.useful_mq }}</td>
           <td>{{ house.house_number }} {{ house.street }}</td>
+          <td>{{ house.floor }}</td>
         </tr>
       </tbody>
     </table>

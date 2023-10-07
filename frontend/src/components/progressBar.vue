@@ -11,9 +11,9 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref } from "vue";
 
-const stages = ['Submitted', 'Accepted', 'House Offered', 'Completed'];
+const stages = ["Submitted", "Accepted", "House Offered", "Completed"];
 const currentStage = ref(1); // Change this value to represent the current stage (0 for Submitted, 3 for Completed)
 </script>
 

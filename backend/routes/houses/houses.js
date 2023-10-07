@@ -7,12 +7,6 @@ import {
 
 const housesRouter = Router();
 
-<<<<<<< HEAD
-housesRouter.route('/').get((req, res) => {
-  const housesList = getHouses();
-
-  res.status(200).json({ houses: housesList });
-=======
 housesRouter.route("/").get((req, res) => {
 	const housesList = getHouses();
 	if (housesList.length === 0) {
@@ -26,7 +20,6 @@ housesRouter.route("/").get((req, res) => {
 	if (housesList.length !== 0) {
 		res.status(200).json({ houses: housesList });
 	}
->>>>>>> master
 });
 
 housesRouter.route("/:id").get((req, res) => {

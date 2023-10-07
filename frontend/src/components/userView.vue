@@ -33,7 +33,7 @@
 </template>
 
 <script setup lang="ts">
-import PBar from '../components/progressBar.vue';
+import PBar from "../components/progressBar.vue";
 const dateOfSubmission: any = new Date(2023, 9, 1);
 const currentDate: any = new Date();
 const msDifference = currentDate - dateOfSubmission;
@@ -41,8 +41,8 @@ const msDifference = currentDate - dateOfSubmission;
 const daysInLine = Math.floor(msDifference / (1000 * 60 * 60 * 24));
 
 function formatDate(date) {
-  const day = date.getDate().toString().padStart(2, '0'); // ensures a 2-digit day
-  const month = (date.getMonth() + 1).toString().padStart(2, '0'); // ensures a 2-digit month
+  const day = date.getDate().toString().padStart(2, "0"); // ensures a 2-digit day
+  const month = (date.getMonth() + 1).toString().padStart(2, "0"); // ensures a 2-digit month
   const year = date.getFullYear();
 
   return `${day}/${month}/${year}`;

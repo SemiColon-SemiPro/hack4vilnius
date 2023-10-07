@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
-import Footer_app from './components/footerApp.vue'
-import Header_app from './components/headerApp.vue'
+import { RouterView } from "vue-router";
+import Footer_app from "./components/footerApp.vue";
+import Header_app from "./components/headerApp.vue";
 
 // prepayment 3,6,12 months
 </script>
