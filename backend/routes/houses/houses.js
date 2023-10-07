@@ -4,7 +4,13 @@ import { getHouses, getHouseById } from './database-handler.js';
 const housesRouter = Router();
 
 housesRouter.route('/').get((req, res) => {
-  res.send(getHouses());
+  const housesList = getHouses();
+  const dataRes = {
+    houses: [],
+  };
+  dataRes.houses = housesList;
+
+  res.send(dataRes);
 });
 
 housesRouter.route('/:id').get((req, res) => {
