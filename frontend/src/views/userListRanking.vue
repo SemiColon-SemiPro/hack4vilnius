@@ -14,6 +14,8 @@
           <td>{{ house.size }}</td>
           <td>{{ house.numberOfRooms }}</td>
           <td>{{ house.floor }}</td>
+          <td>{{ house.address }}</td>
+          <td>{{ house.price }}</td>
         </tr>
       </tbody>
     </table>

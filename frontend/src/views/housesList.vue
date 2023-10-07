@@ -1,14 +1,14 @@
 <template>
-  <h1 class="title">List of properties</h1>
+  <h1 class="title">List of Available houses</h1>
   <div class="table-holder">
     <table>
       <thead>
         <tr>
-          <th>Size</th>
-          <th>Number of Rooms</th>
-          <th>Floor</th>
-          <th>Address</th>
-          <th>Price</th>
+          <th>Ranking</th>
+          <th>Application ID</th>
+          <th>Days Waited</th>
+          <th>Application ID</th>
+          <th>Days Waited</th>
         </tr>
       </thead>
       <tbody>
