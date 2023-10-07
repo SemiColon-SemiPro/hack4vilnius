@@ -44,10 +44,10 @@ applicationsRouter.route("/").get((req, res) => {
 
 applicationsRouter.route("/new").put(async (req, res) => {
 	try {
-		const result = await applicationsSchema.validateAsync(req.body);
-		res.send("passed");
+		const validatedRequest = await applicationsSchema.validateAsync(req.body);
+		res.send(validatedRequest);
 	} catch (e) {
-		res.status(400).send(e.message);
+		res.status(400).json({ code: 400, message: e.message });
 	}
 });
 

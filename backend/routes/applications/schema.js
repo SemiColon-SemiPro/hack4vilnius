@@ -2,7 +2,7 @@ import Joi from "joi";
 
 // schema of request
 const applicationsSchema = Joi.object({
-	personalDetails: {
+	applicantDetails: {
 		personalNumber: Joi.string().required(),
 		firstName: Joi.string().required(),
 		lastName: Joi.string().required(),
@@ -10,7 +10,17 @@ const applicationsSchema = Joi.object({
 		phoneNumber: Joi.string()
 			.regex(/^[+][0-9]+$/)
 			.required(),
+		disabilityLevel: Joi.number().min(1).max(3),
 		householdIncome: Joi.number().required(),
+		sizeOfOccupiedProperty: Joi.number().required(),
+		address: Joi.object({
+			city: Joi.string().required(),
+			district: Joi.string().required(),
+			street: Joi.string().required(),
+			houseNumber: Joi.string().required(),
+			flatNumber: Joi.string(),
+			zipCode: Joi.string().allow(null, ""),
+		}).required(),
 	},
 	familyMembers: Joi.object({
 		count: Joi.number().integer().required(),
@@ -19,26 +29,15 @@ const applicationsSchema = Joi.object({
 			.items(
 				Joi.object({
 					firstName: Joi.string().required(),
-					middleName: Joi.string().allow(null, ""),
 					lastName: Joi.string().required(),
 					dateOfBirth: Joi.string().required(),
 					disabilityLevel: Joi.number(),
-					address: Joi.object({
-						city: Joi.string().required(),
-						district: Joi.string().required(),
-						street: Joi.string().required(),
-						houseNumber: Joi.string().required(),
-						flatNumber: Joi.string(),
-						zipCode: Joi.string().allow(null, ""),
-					}).required(),
 				}).required(),
 			),
 	}),
 	applicationType: Joi.object({
-		youngFamily: Joi.bool().required(),
+		youngFamily: Joi.boolean().required(),
 		tenantsOfSocialHousing: Joi.bool().required(),
-		ownedPropertyMq: Joi.number().required(),
-		singleParents: Joi.bool().required(),
 	}).required(),
 });
 

@@ -4,10 +4,10 @@
 		"firstName": "John",
 		"lastName": "Doe",
 		"email": "john.doe@example.com",
-		"phoneNumber": "123-456-7890",
-		"disabilityLevel": "level1",
+		"phoneNumber": "+1234567890",
+		"disabilityLevel": 1,
 		"householdIncome": 5,
-		"sizeOfOccupiedProperty": "ffpfpfpf",
+		"sizeOfOccupiedProperty": 25.5,
 		"address": {
 			"city": "How",
 			"district": " deep",
@@ -17,25 +17,24 @@
 			"zipCode": "it"
 		}
 	},
-	"FamilyMembers": {
+	"familyMembers": {
 		"count": 2,
 		"familyDetails": [
 			{
-				"name": "Default Name",
+				"firstName": "Default Name",
 				"lastName": "Default Last Name",
 				"dateOfBirth": "01/01/2000",
-				"disabilityLevel": "level3"
+				"disabilityLevel": 3
 			},
 			{
-				"name": "Default Name",
+				"firstName": "Default Name",
 				"lastName": "Default Last Name",
-				"dateOfBirth": "01/01/2000",
-				"disabilityLevel": "level1"
+				"dateOfBirth": "01/01/2000"
 			}
 		]
 	},
 	"applicationType": {
-		"youngFamilies": false,
+		"youngFamily": false,
 		"tenantsOfSocialHousing": true
 	}
 }
