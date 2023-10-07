@@ -1,78 +1,93 @@
 <template id="">
-  <div class="form-container">
-    <form @submit.prevent="onSubmit">
-      <div class="form-group">
-        <!-- Text/Number Inputs -->
+  <div class="container">
+    <div class="form-container">
+      <form @submit.prevent="onSubmit">
         <div class="form-group">
-          <h4>Basic personal Information</h4>
-          <input type="text" placeholder="ID Number" v-model="idNumber" />
-          <input type="text" placeholder="Name" v-model="name" />
-          <input type="text" placeholder="Last Name" v-model="lastName" />
-          <input type="email" placeholder="Email" v-model="email" />
-          <input type="tel" placeholder="Phone Number" v-model="phoneNumber" />
+          <!-- Text/Number Inputs -->
+          <div class="form-group">
+            <h4>Basic personal Information</h4>
+            <div class="row">
+              <div class="col-12 col-md-6">
+                <input type="text" placeholder="Name" v-model="name" required/>
+              </div>
+              <div class="col-12 col-md-6">
+                <input type="text" placeholder="Last Name" v-model="lastName" required/>
+              </div>
+              <div class="col-12 col-md-6">
+                <input type="text" placeholder="ID Number" v-model="idNumber" required/>
+              </div>
+              <div class="col-12 col-md-6">
+                <input type="email" placeholder="Email" v-model="email" required/>
+              </div>
+              <div class="col-12 col-md-6">
+                <input type="tel" placeholder="Phone Number" v-model="phoneNumber" required/>
+              </div>
+            </div>
+          </div>
+  
+          <label class="label-up" for="incomeStatement"
+            >Copy of yearly household income statement:</label
+          >
+          <input type="file" id="incomeStatement" ref="incomeStatement"/>
+  
+          <label class="label-up" for="passport">ID/passport:</label>
+          <input type="file" id="passport" ref="passport" />
+  
+          <label class="label-up" for="numFamilyMembers">Number of family members:</label>
+          <input type="number" id="numFamilyMembers" ref="numFamilyMembers" min="1" value="1"/>
+  
+          <label class="label-up" for="familyPassports">ID/passport for all family members:</label>
+  
+          <input
+            type="file"
+            id="familyPassports"
+            ref="familyPassports"
+            multiple
+          />
+  
+          <label class="label-up" for="birthCertificates"
+            >Birth certificates for family members under 16:</label
+          >
+          <input
+            type="file"
+            id="birthCertificates"
+            ref="birthCertificates"
+            multiple
+          />
         </div>
-
-        <label for="incomeStatement"
-          >Copy of yearly household income statement:</label
-        >
-        <input type="file" id="incomeStatement" ref="incomeStatement" />
-
-        <label for="passport">ID/passport:</label>
-        <input type="file" id="passport" ref="passport" />
-
-        <label for="numFamilyMembers">Number of family members:</label>
-        <input type="number" id="numFamilyMembers" ref="numFamilyMembers" />
-
-        <label for="familyPassports">ID/passport for all family members:</label>
-
-        <input
-          type="file"
-          id="familyPassports"
-          ref="familyPassports"
-          multiple
-        />
-
-        <label for="birthCertificates"
-          >Birth certificates for family members under 16:</label
-        >
-        <input
-          type="file"
-          id="birthCertificates"
-          ref="birthCertificates"
-          multiple
-        />
-      </div>
-
-      <!-- Checkboxes -->
-      <div class="form-group">
-        <h4>Mark what applies to you or a member of your household:</h4>
-        <label>
-          <input type="checkbox" v-model="youngFamilies" /> Young families
-        </label>
-        <label>
-          <input type="checkbox" v-model="familiesRaisingChildren" /> Families
-          raising three or more children
-        </label>
-        <label>
-          <input type="checkbox" v-model="personsWithoutParentalCare" /> Persons
-          left without parental care
-        </label>
-        <label>
-          <input type="checkbox" v-model="disabledOrChronicIllness" /> Disabled
-          persons, persons suffering from chronic diseases
-        </label>
-        <label>
-          <input type="checkbox" v-model="tenantsOfSocialHousing" /> Tenants of
-          social housing
-        </label>
-        <label>
-          <input type="checkbox" v-model="general" /> General (all individuals
-          and families not listed)
-        </label>
-      </div>
-
-      <button type="submit">Submit</button>
-    </form>
+  
+        <!-- Checkboxes -->
+        <div class="form-group">
+          <h4>Mark what applies to you or a member of your household:</h4>
+          <label>
+            <input type="checkbox" v-model="youngFamilies" /> Young families
+          </label>
+          <label>
+            <input type="checkbox" v-model="familiesRaisingChildren" /> Families
+            raising three or more children
+          </label>
+          <label>
+            <input type="checkbox" v-model="personsWithoutParentalCare" /> Persons
+            left without parental care
+          </label>
+          <label>
+            <input type="checkbox" v-model="disabledOrChronicIllness" /> Disabled
+            persons, persons suffering from chronic diseases
+          </label>
+          <label>
+            <input type="checkbox" v-model="tenantsOfSocialHousing" /> Tenants of
+            social housing
+          </label>
+          <label>
+            <input type="checkbox" v-model="general" /> General (all individuals
+            and families not listed)
+          </label>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -142,7 +157,7 @@ const onSubmit = () => {
 .title {
 }
 .form-container {
-  width: 500px;
+  width: 100%;
   margin: 20px auto;
   padding: 20px;
   border: 1px solid #ccc;
@@ -154,8 +169,15 @@ const onSubmit = () => {
 }
 
 label {
+  padding: 5px;
   display: block;
   margin-bottom: 10px;
+}
+
+.label-up {
+  font-weight: bold;
+  font-size: 1.1em;
+  padding-top: 20px;
 }
 
 input[type='text'],

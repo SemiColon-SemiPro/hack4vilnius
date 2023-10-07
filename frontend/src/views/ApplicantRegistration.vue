@@ -1,5 +1,5 @@
 <script setup>
-import ClientInfoForm from '../components/ClientInfo.vue';
+import ClientInfoForm from '../components/clientInfo.vue';
 </script>
 
 <template>

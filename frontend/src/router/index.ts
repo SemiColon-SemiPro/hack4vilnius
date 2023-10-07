@@ -5,7 +5,7 @@ import WorkerViewMain from '../views/WorkerViewMain.vue';
 import ApplicantView from '../views/ApplicantView.vue';
 import WorkerLogin from '../views/WorkerLogin.vue';
 import UserLogin from '../views/UserLogin.vue';
-import ApplicantRegistration from '../views/ApplicantRegistrtion.vue';
+import ApplicantRegistration from '../views/ApplicantRegistration.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
