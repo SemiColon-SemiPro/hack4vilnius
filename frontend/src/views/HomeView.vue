@@ -1,10 +1,12 @@
 <template>
   <div id="display-main">
-    <div id="text1">
-      <h1>Vilnius social housing</h1>
-    </div>
-    <div id="image1">
-      <img src="../../images/house.png" alt="house">
+    <div class="container">
+      <div class="row title-holder pt-5">
+        <h1 class="tutorial-title">Vilnius social housing</h1>
+      </div>
+      <div class="row justify-content-center pt-5">
+        <img class="img-fluid w-50" src="../../images/vmb-logo.png" alt="vilniaus miesto bustas">
+      </div>
     </div>
   </div>
 </template>
@@ -13,41 +15,19 @@
 
 #display-main {
   min-height: 58vh;
-  display: grid;
-  grid-area: 
-  'text-1'
-  'image-1';
 }
-
-#text1 {
-  grid-area: 'text-1';
-  align-self: center;
-}
-
-#image1 {
-  grid-area: 'image-1';
-  align-self: center;
-}
-
 
 .title-holder {
   display: flex;
   justify-content: center;
-  align-content: center;
   margin-bottom: 30px;
   margin-top: 30px;
-}
-
-.title-holder img {
-  min-height: 50px;
-  min-width: auto;
-  max-height: 200px;
 }
 
 .tutorial-title {
   text-align: center;
   text-transform: uppercase;
-  background-image: linear-gradient(-225deg, #06000b 29%, #df0a0a 67%);
+  background-image: linear-gradient(-225deg, #06000b 29%, #1f369c 67%);
   background-size: auto auto;
   background-clip: border-box;
   background-size: 200% auto;
