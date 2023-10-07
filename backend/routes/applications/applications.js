@@ -11,10 +11,10 @@ const applicationsRouter = Router();
 
 applicationsRouter.route("/").get((req, res) => {
 	const desiredNumApplicants = parseInt(req.query.group);
-
+	let applicationList = "";
 	if (!desiredNumApplicants) {
-		const applicantionList = getApplications();
-		if (applicantionList.length === 0) {
+		applicationList = getApplications();
+		if (applicationList.length === 0) {
 			res.status(404).json({
 				error: {
 					code: 404,
@@ -22,14 +22,14 @@ applicationsRouter.route("/").get((req, res) => {
 				},
 			});
 		}
-		if (applicantionList.length !== 0) {
-			res.status(200).json({ applications: applicantionList });
+		if (applicationList.length !== 0) {
+			res.status(200).json({ applications: applicationList });
 		}
 	}
 
-	const applicationsList = getNumberOfApplicants(desiredNumApplicants);
+	applicationList = getNumberOfApplicants(desiredNumApplicants);
 
-	if (applicationsList.length === 0) {
+	if (applicationList.length === 0) {
 		res.status(404).json({
 			error: {
 				code: 404,
@@ -38,7 +38,7 @@ applicationsRouter.route("/").get((req, res) => {
 			},
 		});
 	} else {
-		res.status(200).json({ applications: applicationsList });
+		res.status(200).json({ applications: applicationList });
 	}
 });
 
