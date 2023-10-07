@@ -2,7 +2,6 @@
   <div class="custom-container">
     <div class="custom-form">
       <form @submit.prevent="onSubmit">
-        <!-- Text/Number Inputs -->
         <div class="form-group">
           <h4>Basic personal Information</h4>
           <div class="row">
@@ -36,6 +35,7 @@
                 <option value="level3">Level 3</option>
               </select>
             </div>
+            <label for="dateOfB"> Date of Birth:<input id="dateOfB" type="date" v-model="personalDateOfBirth"></label>
           </div>
           <div class="form-group">
             <h4>Address Information</h4>
@@ -139,6 +139,7 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue';
+import router from '../router/index';
 
 // Document Upload refs
 const incomeStatement = ref("income");
@@ -180,13 +181,15 @@ const email = ref('john.doe@example.com');
 const phoneNumber = ref('123-456-7890');
 const address = ref("ffpfpfpf")
 const incomeHousehold = ref()
+const personalDateOfBirth = ref('01/01/2000')
+
 // Checkbox refs
 const youngFamilies = ref(false);
 const familiesRaisingChildren = ref(false);
 const personsWithoutParentalCare = ref(false);
 const disabledOrChronicIllness = ref(false);
 const tenantsOfSocialHousing = ref(false);
-const general = ref(false);  // You forgot to add this in your ref list
+const general = ref(false);
 
 const onSubmit = () => {
   const formData = {
@@ -194,6 +197,7 @@ const onSubmit = () => {
       personalNumber: idNumber.value,
       firstName: name.value,
       lastName: lastName.value,
+      birthDate: personalDateOfBirth.value,
       email: email.value,
       phoneNumber: phoneNumber.value,
 
@@ -210,6 +214,8 @@ const onSubmit = () => {
   };
 
   console.log(JSON.stringify(formData));
+  router.push('/confirmation');
+
 };
 </script>
 

@@ -15,13 +15,13 @@
     </div>
     <div class="waiting-number">
       <span>You are number</span>
-      <h2>5</h2>
+      <h2>{{ positionInLine }}</h2>
       <span>in the waiting list</span>
     </div>
 
     <div class="waiting-number">
       <span>There are</span>
-      <h2>4</h2>
+      <h2>{{ numberOfHouses }}</h2>
       <span>availabe houses</span>
     </div>
   </div>
@@ -33,12 +33,16 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue"
 import PBar from "../components/progressBar.vue";
 const dateOfSubmission: any = new Date(2023, 9, 1);
 const currentDate: any = new Date();
 const msDifference = currentDate - dateOfSubmission;
 
 const daysInLine = Math.floor(msDifference / (1000 * 60 * 60 * 24));
+
+const positionInLine = ref(5)
+const numberOfHouses = ref(3)
 
 function formatDate(date) {
   const day = date.getDate().toString().padStart(2, "0"); // ensures a 2-digit day
@@ -54,11 +58,14 @@ console.log(daysInLine);
 span {
   font-size: 32px;
 }
+
 .grid-container {
   display: grid;
   grid-template-columns: 30vw 30vw 30vw;
-  gap: 5vw; /* Adjust as needed for space between the grid items */
+  gap: 5vw;
+  /* Adjust as needed for space between the grid items */
 }
+
 #dates {
   display: flex;
   justify-content: space-between;
@@ -69,6 +76,7 @@ span {
   font-size: 24px;
   font-weight: 600;
 }
+
 .todo-notification {
   /* Style as needed */
   border: 1px solid #ccc;
@@ -88,7 +96,8 @@ span {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  font-size: 3rem; /* Adjust the font size as needed */
+  font-size: 3rem;
+  /* Adjust the font size as needed */
   height: 30vh;
   border: 1px solid #ccc;
 }
@@ -98,6 +107,7 @@ span {
   padding: 20px;
   text-align: center;
   border-top: 1px solid #ccc;
-  margin-top: 20px; /* Adjust as needed */
+  margin-top: 20px;
+  /* Adjust as needed */
 }
 </style>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-const listOfHouses = ref<any[]>([]); // initialize it as an empty array or null
+const listOfHouses = ref<any[]>([]);
 
 async function fetchHouses() {
   try {
@@ -13,7 +13,7 @@ async function fetchHouses() {
     const data: any = await response.json();
     console.log(data);
 
-    listOfHouses.value = data.houses; // set the data to listOfHouses ref here
+    listOfHouses.value = data.houses;
   } catch (error) {
     console.error("There was a problem fetching houses:", error);
   }
@@ -52,6 +52,7 @@ fetchHouses();
 .table-holder {
   padding: 30px;
 }
+
 table {
   padding-left: 20px;
   width: 100%;
