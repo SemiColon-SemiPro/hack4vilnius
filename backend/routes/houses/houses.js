@@ -10,7 +10,7 @@ const housesRouter = Router();
 housesRouter.route("/").get((req, res) => {
 	const housesList = getHouses();
 	if (housesList.length === 0) {
-		res.status(200).json({
+		res.status(404).json({
 			error: {
 				code: 404,
 				message: "No houses found in the database",
