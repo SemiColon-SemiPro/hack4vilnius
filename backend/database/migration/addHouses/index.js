@@ -6,7 +6,7 @@ const addHousesAndAddresses = async database => {
   );
 
   const insertHouse = database.prepare(
-    'INSERT INTO houses (available, useful_mq, category, unique_id, address_id, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?)'
+    'INSERT INTO houses (id, available, useful_mq, category, address_id, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?)'
   );
 
   const insertAddress = database.prepare(
@@ -15,8 +15,9 @@ const addHousesAndAddresses = async database => {
 
   let counter = 1;
 
-  for (let i = 0; i < houses.length; i++) {
+  for (let i = 1; i < houses.length; i++) {
     const house = houses[i];
+
     insertAddress.run(
       'Vilnius',
       house[0],
@@ -26,11 +27,12 @@ const addHousesAndAddresses = async database => {
       new Date().toISOString(),
       new Date().toISOString()
     );
+
     insertHouse.run(
+      house[6],
       1,
       house[4],
       house[5],
-      house[6],
       counter,
       new Date().toISOString(),
       new Date().toISOString()

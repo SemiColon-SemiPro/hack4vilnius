@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS applications (
   status TEXT NOT NULL,
   score INTEGER NOT NULL,
   created_at TEXT,
-  updated_at TEXT,
+  updated_at TEXT
 );
 
 CREATE TABLE IF NOT EXISTS applicants (
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS applicants (
 );
 
 CREATE TABLE IF NOT EXISTS houses (
-  id INTEGER PRIMARY KEY,
+  id TEXT PRIMARY KEY,
   available INTEGER NOT NULL,
   useful_mq TEXT NOT NULL,
   category TEXT NOT NULL,
