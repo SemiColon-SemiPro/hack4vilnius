@@ -6,7 +6,7 @@
     <RouterLink :to="{ name: 'UserList' }"
       >Check out the list of available properties</RouterLink
     >
-    <RouterLink :to="{ name: 'UserList' }"
+    <RouterLink :to="{ name: 'HouseList' }"
       >Check out the list of applicatnts</RouterLink
     >
   </div>
