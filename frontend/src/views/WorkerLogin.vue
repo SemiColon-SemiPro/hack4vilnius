@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import LogIn from '../components/LogIn.vue';
+import LogIn from "../components/LogIn.vue";
 </script>
 <style>
 .login-holder {

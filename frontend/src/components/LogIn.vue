@@ -32,23 +32,23 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { useRouter, useRoute } from 'vue-router';
+import { ref } from "vue";
+import { useRouter, useRoute } from "vue-router";
 
 const router = useRouter();
 const route = useRoute();
 
-const username = ref('');
-const password = ref('');
+const username = ref("");
+const password = ref("");
 
 const login = () => {
   // Check if the current URL contains the word "user"
-  if (route.fullPath.includes('user')) {
+  if (route.fullPath.includes("user")) {
     // Navigate to UserDash
-    router.push({ name: 'UserDash' });
+    router.push({ name: "UserDash" });
   } else {
     // Navigate to WorkerDash
-    router.push({ name: 'WorkerDash' });
+    router.push({ name: "WorkerDash" });
   }
 };
 </script>
