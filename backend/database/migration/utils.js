@@ -19,7 +19,7 @@ export const readHousesCsv = async csvPath => {
     .map(e => e.trim())
     .map(ele => ele.split(/\r?\n/g))
     .flat()
-    .map(element => element.trim());;
+    .map(element => element.trim());
 
   const housesList = [];
 
@@ -36,5 +36,3 @@ export const readHousesCsv = async csvPath => {
 
   return housesList;
 };
-
-
