@@ -4,12 +4,10 @@ BEGIN TRANSACTION;
 
 CREATE TABLE IF NOT EXISTS applications (
   id INTEGER PRIMARY KEY,
-  applicant_id INTEGER NOT NULL,
   status TEXT NOT NULL,
   score INTEGER NOT NULL,
   created_at TEXT,
   updated_at TEXT,
-  FOREIGN KEY(applicant_id) REFERENCES applicants(id)
 );
 
 CREATE TABLE IF NOT EXISTS applicants (
@@ -18,15 +16,15 @@ CREATE TABLE IF NOT EXISTS applicants (
   middle_name TEXT,
   last_name TEXT NOT NULL,
   age INTEGER NOT NULL,
-  family_size INTEGER,
   disability_level INTEGER,
   refugee INTEGER,
-  financial_bracket INTEGER,
-  priority INTEGER,
-  eligible INTEGER,
+  income INTEGER,
+  flag INTEGER,
   address_id INTEGER,
+  application_id INTEGER,
   created_at TEXT,
   updated_at TEXT,
+  FOREIGN KEY(application_id) REFERENCES applications(id),
   FOREIGN KEY(address_id) REFERENCES addresses(id)
 );
 
@@ -36,7 +34,6 @@ CREATE TABLE IF NOT EXISTS houses (
   useful_mq TEXT NOT NULL,
   category TEXT NOT NULL,
   capacity INTEGER,
-  unique_id TEXT NOT NULL,
   floor INTEGER,
   rooms_number INTEGER,
   elevator INTEGER,
