@@ -1,29 +1,3 @@
-<template>
-  <h1 class="title">List of Available houses</h1>
-  <div class="table-holder">
-    <table>
-      <thead>
-        <tr>
-          <th>Ranking</th>
-          <th>Application ID</th>
-          <th>Days Waited</th>
-          <th>Application ID</th>
-          <th>Days Waited</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="house in houses" :key="house.address">
-          <td>{{ house.size }}</td>
-          <td>{{ house.numberOfRooms }}</td>
-          <td>{{ house.floor }}</td>
-          <td>{{ house.address }}</td>
-          <td>{{ house.price }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { ref } from 'vue';
 
@@ -82,9 +56,9 @@ async function fetchHouses() {
     }
 
     const data: any = await response.json();
-    console.log(response);
+    console.log(data);
 
-    listOfHouses.value = data; // set the data to listOfHouses ref here
+    listOfHouses.value = data.houses; // set the data to listOfHouses ref here
   } catch (error) {
     console.error('There was a problem fetching houses:', error);
   }
@@ -92,6 +66,29 @@ async function fetchHouses() {
 
 fetchHouses();
 </script>
+
+<template>
+  <h1 class="title">List of properties</h1>
+  <div class="table-holder">
+    <table>
+      <thead>
+        <tr>
+          <th>Size</th>
+          <th>Number of Rooms</th>
+          <th>Floor</th>
+          <th>Address</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="house in listOfHouses" :key="house.id">
+          <td>{{ house.id }}</td>
+          <td>{{ house.available }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</template>
 
 <style scoped>
 .table-holder {

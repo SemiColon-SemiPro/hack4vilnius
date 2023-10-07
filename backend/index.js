@@ -9,6 +9,13 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.use((req, res, next) => {
+  res.append('Access-Control-Allow-Origin', ['*']);
+  res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.append('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
+
 app.use('/api/v1/applications', applicationsRouter);
 app.use('/api/v1/applicants', applicantsRouter);
 app.use('/api/v1/houses', housesRouter);
