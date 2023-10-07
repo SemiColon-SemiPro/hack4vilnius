@@ -1,5 +1,8 @@
 <template>
-  <div>Here we will have the applicant vue</div>
+  <h1 class="title">User Portal</h1>
+  <UserView />
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import UserView from '../components/userView.vue';
+</script>
