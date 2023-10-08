@@ -25,9 +25,12 @@ const parseRequest = (requestObj) => {
 		requestObj.familyMembers.familyDetails.forEach((member) => {
 			applicantsData.push({
 				type: "member",
+				personalNumber: member.personalNumber,
 				firstName: member.firstName,
 				lastName: member.lastName,
 				dateOfBirth: member.dateOfBirth,
+				email: member.email ? member.email : null,
+				phoneNumber: member.phoneNumber ? member.phoneNumber : null,
 				disabilityLevel: member.disabilityLevel
 					? member.disabilityLevel
 					: null,

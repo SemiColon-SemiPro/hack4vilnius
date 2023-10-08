@@ -7,7 +7,9 @@ import {
 	insertApplicants,
 	insertAddress,
 	getAddressId,
+	getScore,
 } from "./database-handler.js";
+import calculateScore from "../../models/index.js";
 import parseRequest from "./request-parser.js";
 
 const applicationsRouter = Router();
@@ -63,20 +65,23 @@ applicationsRouter.route("/new").put(async (req, res) => {
 			req.body,
 		);
 		const parsedRequest = parseRequest(validatedRequest);
-		await insertApplication(parsedRequest.applicationData);
-		const timestamp = await insertAddress(
-			parsedRequest.addressData.address,
-		);
-		const id = await getAddressId(
-			parsedRequest.addressData.address,
-			timestamp,
-		);
+
+		insertApplication(parsedRequest.applicationData);
+		const timestamp = insertAddress(parsedRequest.addressData.address);
+		const id = getAddressId(parsedRequest.addressData.address, timestamp);
+
 		insertApplicants(
 			parsedRequest.applicationData.id,
 			id,
 			parsedRequest.applicantsData,
 		);
-		res.status(200).json(parsedRequest);
+		calculateScore(parsedRequest.applicationData.id);
+		const score = getScore(parsedRequest.applicationData.id);
+		res.status(200).json({
+			request: parsedRequest,
+			applicationId: parsedRequest.applicationData.id,
+			score: score,
+		});
 	} catch (e) {
 		res.status(400).json({ code: 400, message: e.message });
 	}
