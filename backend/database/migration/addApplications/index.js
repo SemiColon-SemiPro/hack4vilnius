@@ -4,7 +4,7 @@ export const addApplications = async (database, data) => {
 	const applications = await readApplications(data);
 
 	const insertApplications = database.prepare(
-		"INSERT INTO applications (id, status, score, created_at, updated_at) VALUES (?, ?, ?, ?, ?)",
+		"INSERT INTO applications (id, status, score, occupied_property, useful_mq, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?)",
 	);
 
 	applications.forEach((application) => {
@@ -13,8 +13,10 @@ export const addApplications = async (database, data) => {
 			application.id,
 			application.status,
 			application.score,
-			application.created_at,
-			application.updated_at,
+			application.occupiedProperty,
+			application.usefulMq,
+			application.createdAt,
+			application.updatedAt,
 		);
 	});
 };

@@ -44,3 +44,7 @@ export const readApplications = async (jsonFile) => {
 export const readApplicants = async (jsonFile) => {
 	return jsonFile.applicants;
 };
+
+export const readAddresses = async (jsonFile) => {
+	return jsonFile.addresses;
+};

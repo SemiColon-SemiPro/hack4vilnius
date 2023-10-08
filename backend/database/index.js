@@ -3,10 +3,9 @@ import createTables from "./migration/createTables/index.js";
 import addHousesAndAddresses from "./migration/addHouses/index.js";
 import { addApplications } from "./migration/addApplications/index.js";
 import { addApplicants } from "./migration/addApplicants/index.js";
-import application_applicants_json from "./data/application_data.json" assert { type: "json" };
+import { addApplicantsAddresses } from "./migration/addAddresses/index.js";
+import sample_data from "./data/application_samples.json" assert { type: "json" };
 import addCapacity from "./migration/addCapacity/index.js";
-import alterApplications from "./migration/migration1/index.js";
-import alterApplicants from "./migration/migration2/index.js";
 
 const createDb = (dbPath) => {
 	const db = sqlite(dbPath);
@@ -31,7 +30,16 @@ const countOfApplications = db
 	.get();
 console.info(`Total applications in db: ${countOfApplications.count}`);
 if (countOfApplications.count == 0) {
-	addApplications(db, application_applicants_json);
+	addApplications(db, sample_data);
+}
+
+// add initial applicants' addresses batch
+const countOfAddresses = db
+	.prepare("SELECT COUNT(*) count FROM addresses")
+	.get();
+console.info(`Total addresses in db: ${countOfAddresses.count}`);
+if (countOfAddresses.count < 2880) {
+	addApplicantsAddresses(db, sample_data);
 }
 
 // add initial applicants batch
@@ -40,7 +48,7 @@ const countOfApplicants = db
 	.get();
 console.info(`Total applicants in db: ${countOfApplicants.count}`);
 if (countOfApplicants.count == 0) {
-	addApplicants(db, application_applicants_json);
+	addApplicants(db, sample_data);
 }
 
 // add capacity to houses
@@ -50,30 +58,6 @@ const countOfNullCapacities = await db
 console.info(`Total null capacities in db: ${countOfNullCapacities.count}`);
 if (countOfNullCapacities.count > 0) {
 	addCapacity(db);
-}
-
-// migration 1 - add cols to applications
-try {
-	const countIfExistsOccupiedProperty = await db
-		.prepare("SELECT COUNT(occupied_property) FROM applications;")
-		.get();
-	console.info(
-		"Occupied properties and useful_mq columns are already available.",
-	);
-} catch (e) {
-	alterApplications(db);
-}
-
-// migration 2 - add cols to applicants
-try {
-	const countIfExistsEmails = await db
-		.prepare("SELECT COUNT(email) FROM applicants;")
-		.get();
-	console.info(
-		"Email, phone_number, applicant_type columns are already available.",
-	);
-} catch (e) {
-	alterApplicants(db);
 }
 
 export default db;

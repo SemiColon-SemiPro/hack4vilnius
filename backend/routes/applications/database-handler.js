@@ -14,9 +14,9 @@ HAVING COUNT() = ?;
 const INSERT_APPLICATION =
 	"INSERT INTO applications (id, status, score, created_at, updated_at, occupied_property, useful_mq) VALUES (?, ?, ?, ?, ?, ?, ?)";
 const INSERT_APPLICANT =
-	"INSERT INTO applicants (first_name, last_name, age, disability_level, refugee, income, flag, address_id, application_id, created_at, updated_at, email, phone_number, applicant_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	"INSERT INTO applicants (personal_number, first_name, last_name, date_of_birth, disability_level, income, flag, address_id, application_id, created_at, updated_at, email, phone_number, applicant_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 const INSERT_ADDRESS =
-	"INSERT INTO addresses (city, district, street, house_number, flat_number, zip, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	"INSERT INTO addresses (city, district, street, house_number, flat_number, zip_code, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 const SELECT_ADDRESS_ID =
 	"SELECT id FROM addresses WHERE street = ? AND house_number = ? AND created_at = ?";
 
@@ -54,16 +54,15 @@ export const insertApplicants = async (
 	const timestamp = new Date().toISOString();
 	applicantsData.forEach((applicant) => {
 		const stmt = db.prepare(INSERT_APPLICANT);
-		console.log(applicant);
 		stmt.run([
+			applicant.personalNumber,
 			applicant.firstName,
 			applicant.lastName,
 			applicant.dateOfBirth,
-			applicant.disabilityLevel,
-			0,
-			applicant.type === "applicant" ? applicant.income : 0,
-			0,
-			addressId,
+			applicant.disabilityLevel ? applicant.disabilityLevel : 0,
+			applicant.income ? applicant.income : 0.0,
+			applicant.flag ? applicant.flag : 0,
+			addressId.id,
 			applicationId,
 			timestamp,
 			timestamp,
