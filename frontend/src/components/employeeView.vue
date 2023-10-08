@@ -31,11 +31,11 @@
         <span>applicants found a home</span>
       </div>
     </router-link>
-    <router-link to="/user-list-ranking/matches">
+    <router-link to="/matches">
 
       <div class="box suggestions">Suggestions to Offer Housing</div>
     </router-link>
-    <router-link to="/user-list-ranking/incoming-properties">
+    <router-link to="/incoming-properties">
 
       <div class="box incoming-properties">Incoming Properties to Approve</div>
     </router-link>

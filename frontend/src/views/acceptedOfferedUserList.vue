@@ -1,10 +1,10 @@
 <template>
-  <h1 class="title">Waiting List</h1>
+  <h1 class="title">List of Successful Applications</h1>
   <div class="table-holder">
     <table>
       <thead>
         <tr>
-          <th>Ranking</th>
+          <th>Number</th>
           <th>Application ID</th>
           <th>Days Waited</th>
         </tr>
@@ -14,8 +14,6 @@
           <td>{{ house.size }}</td>
           <td>{{ house.numberOfRooms }}</td>
           <td>{{ house.floor }}</td>
-          <td>{{ house.address }}</td>
-          <td>{{ house.price }}</td>
         </tr>
       </tbody>
     </table>
@@ -70,7 +68,7 @@ const houses = ref([
   },
 ]);
 
-const listOfHouses = ref<any[]>([]); // initialize it as an empty array or null
+const listOfHouses = ref<any[]>([]);
 
 async function fetchHouses() {
   try {
@@ -82,7 +80,7 @@ async function fetchHouses() {
     const data: any = await response.json();
     console.log(response);
 
-    listOfHouses.value = data; // set the data to listOfHouses ref here
+    listOfHouses.value = data;
   } catch (error) {
     console.error("There was a problem fetching houses:", error);
   }

@@ -14,8 +14,7 @@
           <td>{{ house.size }}</td>
           <td>{{ house.numberOfRooms }}</td>
           <td>{{ house.floor }}</td>
-          <td>{{ house.address }}</td>
-          <td>{{ house.price }}</td>
+
         </tr>
       </tbody>
     </table>
@@ -95,6 +94,7 @@ fetchHouses();
 .table-holder {
   padding: 30px;
 }
+
 table {
   padding-left: 20px;
   width: 100%;
