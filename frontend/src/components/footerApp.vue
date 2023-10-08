@@ -7,30 +7,9 @@
             <label class="name">Useful links:</label>
             <div class="links">
               <a
-                href="https://smartproxy.com/proxies/residential-proxies/pricing"
+                href="https://www.vmb.lt/d-u-k/"
               >
-                Resi</a
-              >
-              <a href="https://smartproxy.com/proxies/mobile/pricing">
-                Mobile</a
-              >
-              <a
-                href="https://smartproxy.com/proxies/dedicated-datacenter-proxies/pricing"
-              >
-                Dedicated DC</a
-              >
-              <a
-                href="https://smartproxy.com/proxies/static-isp-residential-proxies/pricing"
-              >
-                ISP DC</a
-              >
-              <a
-                href="https://smartproxy.com/proxies/datacenter-proxies/pricing"
-              >
-                DC Shared</a
-              >
-              <a href="https://smartproxy.com/proxies/site-unblocker/pricing"
-                >Unblocker</a
+                FAQ</a
               >
             </div>
           </div>
@@ -42,6 +21,7 @@
 
 <style>
 .footer {
+  min-height: 210px;
   margin-top: 50px;
   padding: 2%;
   width: 100%;

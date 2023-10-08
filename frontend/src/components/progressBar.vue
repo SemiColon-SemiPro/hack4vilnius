@@ -25,6 +25,7 @@ const currentStage = ref(1); // Change this value to represent the current stage
 }
 
 .stage {
+  border: 1px solid black;
   width: 25%;
   padding: 10px;
   background-color: #e0e0e0;

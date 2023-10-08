@@ -9,7 +9,7 @@
     <div class="todo-notification">
       <h3 class="notification">You have 2 notifications</h3>
       <ul>
-        <li>Submit ID of all memebres of your family</li>
+        <li>Submit ID of all members of your family</li>
         <li>Get UZT approval</li>
       </ul>
     </div>
@@ -55,9 +55,10 @@ span {
   font-size: 32px;
 }
 .grid-container {
+  padding: 20px;  
   display: grid;
   grid-template-columns: 30vw 30vw 30vw;
-  gap: 5vw; /* Adjust as needed for space between the grid items */
+  column-gap: 3vw; /* Adjust as needed for space between the grid items */
 }
 #dates {
   display: flex;
