@@ -11,17 +11,20 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(house, index) in houses" :key="house.address">
-          <td>{{ house.size }}</td>
+        <tr v-for="app in listOfApplications" :key="app.id">
+          <td>{{ app.score }}</td>
 
           <td>
-            <router-link to="/indApplication">
-              {{ house.numberOfRooms }}
+            <router-link to="/indApplication" id="app-id">
+              {{ app.id }}
             </router-link>
           </td>
-          <td>{{ house.floor }}</td>
-          <td><button type="button" @click="cancelTheOffer(index)">Approve</button></td>
-
+          <td>8</td>
+          <td>
+            <button type="button" @click="cancelApplication(app.id)">
+              Approve
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -29,75 +32,38 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref } from 'vue';
 import { RouterView } from 'vue-router';
 import router from '../router/index';
-function cancelTheOffer(index: number) {
-  houses.value.splice(index, 1);
-} const houses = ref([
-  {
-    size: "100 sqm",
-    numberOfRooms: 3,
-    floor: 2,
-    address: "123 Pigu Street, Vilnius",
-    price: "200 UEUR",
-  },
-  {
-    size: "150 sqm",
-    numberOfRooms: 4,
-    floor: 5,
-    address: "456 Zidu Avenue, Vilnius",
-    price: "25 EUR",
-  },
-  {
-    size: "80 sqm",
-    numberOfRooms: 2,
-    floor: 1,
-    address: "79 Egle Blvd, Vilnius",
-    price: "180",
-  },
-  {
-    size: "100 sqm",
-    numberOfRooms: 3,
-    floor: 2,
-    address: "123 Pigu Street, Vilnius",
-    price: "200 UEUR",
-  },
-  {
-    size: "150 sqm",
-    numberOfRooms: 4,
-    floor: 5,
-    address: "456 Zidu Avenue, Vilnius",
-    price: "25 EUR",
-  },
-  {
-    size: "80 sqm",
-    numberOfRooms: 2,
-    floor: 1,
-    address: "79 Egle Blvd, Vilnius",
-    price: "180",
-  },
-]);
+function cancelApplication(id: string) {
+  let idx = 0;
+  listOfApplications.value.forEach(app => {
+    if (app.id === id) {
+      idx = listOfApplications.value.indexOf(app);
+    }
+  });
+  listOfApplications.value.splice(idx, 1);
+}
 
-const listOfHouses = ref<any[]>([]); // initialize it as an empty array or null
+const listOfApplications = ref<any[]>([]); // initialize it as an empty array or null
 
-async function fetchHouses() {
+async function fetchApplications() {
   try {
-    const response = await fetch("http://localhost:3000/api/v1/houses");
+    const response = await fetch('http://localhost:3000/api/v1/applications');
     if (!response.ok) {
-      throw new Error("Network response was not ok");
+      throw new Error('Network response was not ok');
     }
 
     const data: any = await response.json();
-    console.log(response);
+    console.log(data);
 
-    listOfHouses.value = data; // set the data to listOfHouses ref here
+    listOfApplications.value = data.applications; // set the data to listOfHouses ref here
   } catch (error) {
-    console.error("There was a problem fetching houses:", error);
+    console.error('There was a problem fetching houses:', error);
   }
 }
 
-fetchHouses();
+fetchApplications();
 </script>
 
 <style scoped>
@@ -117,5 +83,8 @@ td {
   padding: 8px;
   text-align: left;
 }
-</style>
 
+#app-id {
+  color: rgba(0, 0, 0, 0.635);
+}
+</style>
