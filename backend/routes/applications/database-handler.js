@@ -1,7 +1,7 @@
 import db from "../../database/index.js";
 
 // queries
-const SELECT_APPLICAITONS = "SELECT * FROM applications";
+const SELECT_APPLICAITONS = "SELECT * FROM applications ORDER BY score DESC";
 const SELECT_APPLICATION_BY_ID = "SELECT * FROM applications WHERE id = ?";
 const SELECT_APPLICATIONS_WITH_NUM_APPLICANTS = `
 SELECT applications.score, applications.status, application_id , COUNT() count_of_applicants

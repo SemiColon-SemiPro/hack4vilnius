@@ -12,35 +12,47 @@ import parseRequest from "./request-parser.js";
 
 const applicationsRouter = Router();
 
-applicationsRouter.route("/").get((req, res) => {
+applicationsRouter.route("/").get(async (req, res) => {
 	const desiredNumApplicants = parseInt(req.query.group);
 	let applicationList = "";
+
 	if (!desiredNumApplicants) {
-		applicationList = getApplications();
-		if (applicationList.length === 0) {
-			res.status(404).json({
-				error: {
-					code: 404,
-					message: "No applications found in the database",
-				},
-			});
-		}
-		if (applicationList.length !== 0) {
-			res.status(200).json({ applications: applicationList });
+		try {
+			applicationList = await getApplications();
+
+			if (applicationList.length === 0) {
+				res.status(404).json({
+					error: {
+						code: 404,
+						message: "No applications found in the database",
+					},
+				});
+			} else {
+				res.status(200).json({ applications: applicationList });
+				console.log(applicationList);
+			}
+		} catch (error) {
+			console.error(error);
+			res.status(500).json({ error: "Internal Server Error" });
 		}
 	} else {
-		applicationList = getNumberOfApplicants(desiredNumApplicants);
+		try {
+			applicationList = await getNumberOfApplicants(desiredNumApplicants);
 
-		if (applicationList.length === 0) {
-			res.status(404).json({
-				error: {
-					code: 404,
-					message:
-						"No applications found with the specified number of applicants",
-				},
-			});
-		} else {
-			res.status(200).json({ applications: applicationList });
+			if (applicationList.length === 0) {
+				res.status(404).json({
+					error: {
+						code: 404,
+						message:
+							"No applications found with the specified number of applicants",
+					},
+				});
+			} else {
+				res.status(200).json({ applications: applicationList });
+			}
+		} catch (error) {
+			console.error(error);
+			res.status(500).json({ error: "Internal Server Error" });
 		}
 	}
 });
@@ -52,8 +64,13 @@ applicationsRouter.route("/new").put(async (req, res) => {
 		);
 		const parsedRequest = parseRequest(validatedRequest);
 		await insertApplication(parsedRequest.applicationData);
-		const timestamp = await insertAddress(parsedRequest.addressData.address);
-		const id = await getAddressId(parsedRequest.addressData.address, timestamp);
+		const timestamp = await insertAddress(
+			parsedRequest.addressData.address,
+		);
+		const id = await getAddressId(
+			parsedRequest.addressData.address,
+			timestamp,
+		);
 		insertApplicants(
 			parsedRequest.applicationData.id,
 			id,
