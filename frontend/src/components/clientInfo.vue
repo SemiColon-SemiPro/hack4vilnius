@@ -65,6 +65,7 @@
                 <input type="text" placeholder="Name of the Family Member" v-model="familyMembers[index].name" required />
                 <input type="text" placeholder="Last Name of the Family Member" v-model="familyMembers[index].lastName"
                   required />
+                <input type="number" v-model="familyMembers[index].idNumber" placeholder="id number">
                 <input type="text" placeholder="Birth date DD/MM/YYYY" v-model="familyMembers[index].dateOfBirth"
                   required />
                 <div class="selection-dis">
@@ -163,7 +164,8 @@ const updateFamilyMembers = () => {
       name: 'Default Name',
       lastName: 'Default Last Name',
       dateOfBirth: '01/01/2000',
-      disabilityLevel: "none"
+      disabilityLevel: "none",
+      idNumber: "123"
     });
   }
   while (familyMembers.value.length > newLength) {
