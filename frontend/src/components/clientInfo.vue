@@ -9,52 +9,22 @@
               <input type="text" placeholder="Name" v-model="name" required />
             </div>
             <div class="col-12 col-md-6">
-              <input
-                type="text"
-                placeholder="Last Name"
-                v-model="lastName"
-                required
-              />
+              <input type="text" placeholder="Last Name" v-model="lastName" required />
             </div>
             <div class="col-12 col-md-6">
-              <input
-                type="text"
-                placeholder="ID Number"
-                v-model="idNumber"
-                required
-              />
+              <input type="text" placeholder="ID Number" v-model="idNumber" required />
             </div>
             <div class="col-12 col-md-6">
-              <input
-                type="email"
-                placeholder="Email"
-                v-model="email"
-                required
-              />
+              <input type="email" placeholder="Email" v-model="email" required />
             </div>
             <div class="col-12 col-md-6">
-              <input
-                type="tel"
-                placeholder="Phone Number"
-                v-model="phoneNumber"
-                required
-              />
+              <input type="tel" placeholder="Phone Number" v-model="phoneNumber" required />
             </div>
             <div class="col-12 col-md-6">
-              <input
-                type="text"
-                placeholder="Address"
-                v-model="address"
-                required
-              />
+              <input type="text" placeholder="Address" v-model="address" required />
             </div>
             <div class="col-12">
-              <input
-                type="number"
-                placeholder="income"
-                v-model="incomeHousehold"
-                required
-              />
+              <input type="number" placeholder="income" v-model="incomeHousehold" required />
             </div>
             <div class="selection-dis">
               <label>Disability level</label>
@@ -65,104 +35,42 @@
                 <option value="level3">Level 3</option>
               </select>
             </div>
-            <label for="dateOfB">
-              Date of Birth:<input
-                id="dateOfB"
-                type="date"
-                v-model="personalDateOfBirth"
-            /></label>
+            <label for="dateOfB"> Date of Birth:<input id="dateOfB" type="date" v-model="personalDateOfBirth"></label>
           </div>
           <div class="form-group">
             <h4>Address Information</h4>
             <div class="row">
               <input type="text" placeholder="City" v-model="city" required />
-              <input
-                type="text"
-                placeholder="District"
-                v-model="district"
-                required
-              />
-              <input
-                type="text"
-                placeholder="Street"
-                v-model="street"
-                required
-              />
-              <input
-                type="text"
-                placeholder="House Number"
-                v-model="houseNumber"
-                required
-              />
-              <input
-                type="text"
-                placeholder="Flat Number (optional)"
-                v-model="flatNumber"
-              />
-              <input
-                type="text"
-                placeholder="ZIP Code"
-                v-model="zipCode"
-                required
-              />
+              <input type="text" placeholder="District" v-model="district" required />
+              <input type="text" placeholder="Street" v-model="street" required />
+              <input type="text" placeholder="House Number" v-model="houseNumber" required />
+              <input type="text" placeholder="Flat Number (optional)" v-model="flatNumber" />
+              <input type="text" placeholder="ZIP Code" v-model="zipCode" required />
             </div>
           </div>
 
-          <label class="label-up" for="incomeStatement"
-            >Copy of yearly household income statement:</label
-          >
+          <label class="label-up" for="incomeStatement">Copy of yearly household income statement:</label>
           <input type="file" id="incomeStatement" ref="incomeStatement" />
 
           <label class="label-up" for="passport">ID/passport:</label>
           <input type="file" id="passport" ref="passport" />
 
-          <label class="label-up" for="numFamilyMembers"
-            >Number of family members (excluding the main applicant):</label
-          >
-          <input
-            type="number"
-            id="numFamilyMembers"
-            v-model="numFamilyMembers"
-          />
+          <label class="label-up" for="numFamilyMembers">Number of family members (excluding the main applicant):</label>
+          <input type="number" id="numFamilyMembers" v-model="numFamilyMembers" />
 
-          <div
-            v-for="(member, index) in numFamilyMembers"
-            :key="index"
-            class="familyMember"
-          >
+          <div v-for="(member, index) in numFamilyMembers" :key="index" class="familyMember">
             <h3>Family Member {{ index + 2 }}</h3>
             <div class="in">
               <div class="names">
-                <input
-                  type="text"
-                  placeholder="Name of the Family Member"
-                  v-model="familyMembers[index].name"
-                  required
-                />
-                <input
-                  type="text"
-                  placeholder="Last Name of the Family Member"
-                  v-model="familyMembers[index].lastName"
-                  required
-                />
-                <input
-                  type="number"
-                  v-model="familyMembers[index].idNumber"
-                  placeholder="id number"
-                />
-                <input
-                  type="text"
-                  placeholder="Birth date DD/MM/YYYY"
-                  v-model="familyMembers[index].dateOfBirth"
-                  required
-                />
+                <input type="text" placeholder="Name of the Family Member" v-model="familyMembers[index].name" required />
+                <input type="text" placeholder="Last Name of the Family Member" v-model="familyMembers[index].lastName"
+                  required />
+                <input type="number" v-model="familyMembers[index].idNumber" placeholder="id number">
+                <input type="text" placeholder="Birth date DD/MM/YYYY" v-model="familyMembers[index].dateOfBirth"
+                  required />
                 <div class="selection-dis">
                   <label>Disability level</label>
-                  <select
-                    id="disability-level"
-                    name="disabilityLevel"
-                    v-model="familyMembers[index].disable"
-                  >
+                  <select id="disability-level" name="disabilityLevel" v-model="familyMembers[index].disable">
                     <option value="none"></option>
                     <option value="level1">Level 1</option>
                     <option value="level2">Level 2</option>
@@ -171,49 +79,29 @@
                 </div>
               </div>
               <div class="documents">
+
                 <div class="documents">
-                  <label class="label-up" for="familyPassports"
-                    >ID/passport (adult family members):</label
-                  >
+                  <label class="label-up" for="familyPassports">ID/passport (adult family members):</label>
 
-                  <input
-                    type="file"
-                    id="familyPassports"
-                    ref="familyPassports"
-                    multiple
-                  />
+                  <input type="file" id="familyPassports" ref="familyPassports" multiple />
 
-                  <label class="label-up" for="birthCertificates"
-                    >Birth certificates for family members under 16:</label
-                  >
-                  <input
-                    type="file"
-                    id="birthCertificates"
-                    ref="birthCertificates"
-                    multiple
-                  />
+                  <label class="label-up" for="birthCertificates">Birth certificates for family members under 16:</label>
+                  <input type="file" id="birthCertificates" ref="birthCertificates" multiple />
                 </div>
               </div>
             </div>
           </div>
 
-          <label for="incomeStatement"
-            >Copy of yearly household income statement:</label
-          >
+          <label for="incomeStatement">Copy of yearly household income statement:</label>
           <input type="file" id="incomeStatement" ref="incomeStatement" />
 
           <label for="passport">ID/passport:</label>
           <input type="file" id="passport" ref="passport" />
 
-          <label for="birthCertificates"
-            >Birth certificates for family members under 16:</label
-          >
-          <input
-            type="file"
-            id="birthCertificates"
-            ref="birthCertificates"
-            multiple
-          />
+
+
+          <label for="birthCertificates">Birth certificates for family members under 16:</label>
+          <input type="file" id="birthCertificates" ref="birthCertificates" multiple />
           <!-- Checkboxes -->
           <div class="form-group">
             <h4>Mark what applies to you or a member of your household:</h4>
@@ -221,41 +109,31 @@
               <input type="checkbox" v-model="youngFamilies" /> Young families
             </label>
             <label>
-              <input type="checkbox" v-model="familiesRaisingChildren" />
-              Families raising three or more children
+              <input type="checkbox" v-model="familiesRaisingChildren" /> Families
+              raising three or more children
             </label>
             <label>
-              <input type="checkbox" v-model="personsWithoutParentalCare" />
-              Persons left without parental care
+              <input type="checkbox" v-model="personsWithoutParentalCare" /> Persons
+              left without parental care
             </label>
             <label>
-              <input type="checkbox" v-model="disabledOrChronicIllness" />
-              Disabled persons, persons suffering from chronic diseases
+              <input type="checkbox" v-model="disabledOrChronicIllness" /> Disabled
+              persons, persons suffering from chronic diseases
             </label>
             <label>
-              <input type="checkbox" v-model="tenantsOfSocialHousing" /> Tenants
-              of social housing
+              <input type="checkbox" v-model="tenantsOfSocialHousing" /> Tenants of
+              social housing
             </label>
             <label>
-              <input type="checkbox" v-model="general" /> General (all
-              individuals and families not listed)
+              <input type="checkbox" v-model="general" /> General (all individuals
+              and families not listed)
             </label>
           </div>
           <div style="padding-bottom: 20px">
             <label class="label-up" for="password">Password</label>
-            <input
-              type="password"
-              placeholder="Password"
-              required
-              value="12345678a"
-            />
+            <input type="password" placeholder="Password" required value="12345678a">
             <label class="label-up" for="password-re">Re-enter password</label>
-            <input
-              type="password"
-              placeholder="Password"
-              required
-              value="12345678a"
-            />
+            <input type="password" placeholder="Password" required value="12345678a">
           </div>
           <button type="submit">Submit</button>
         </div>
@@ -264,22 +142,19 @@
   </div>
 </template>
 
+
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import router from '../router/index';
-import axios from 'axios';
 
-// Text/Number Input refs
-const idNumber = ref('94u0943u5');
-const name = ref('John');
-const lastName = ref('Doe');
-const email = ref('john.doe@example.com');
-const phoneNumber = ref('123-456-7890');
-const address = ref('ffpfpfpf');
-const incomeHousehold = ref();
-const personalDateOfBirth = ref('01/01/2000');
+// Document Upload refs
+const incomeStatement = ref("income");
+const passport = ref("pass");
+const numFamilyMembers = ref(0);
+const familyMembers = ref([]);
+const persDisable = ref("none")
 
-// Address info
+
 const city = ref('How');
 const district = ref(' deep');
 const street = ref('is');
@@ -287,12 +162,33 @@ const houseNumber = ref('your');
 const flatNumber = ref('love');
 const zipCode = ref('it');
 
-// Document Upload refs
-const incomeStatement = ref('income');
-const passport = ref('pass');
-const numFamilyMembers = ref(0);
-const familyMembers = ref([]);
-const persDisable = ref('none');
+const updateFamilyMembers = () => {
+  const newLength = numFamilyMembers.value;
+  while (familyMembers.value.length < newLength) {
+    familyMembers.value.push({
+      name: 'Default Name',
+      lastName: 'Default Last Name',
+      dateOfBirth: '01/01/2000',
+      disabilityLevel: "none",
+      idNumber: "123"
+    });
+  }
+  while (familyMembers.value.length > newLength) {
+    familyMembers.value.pop();
+  }
+};
+
+watch(numFamilyMembers, updateFamilyMembers);
+
+// Text/Number Input refs
+const idNumber = ref('94u0943u5');
+const name = ref('John');
+const lastName = ref('Doe');
+const email = ref('john.doe@example.com');
+const phoneNumber = ref('123-456-7890');
+const address = ref("ffpfpfpf")
+const incomeHousehold = ref()
+const personalDateOfBirth = ref('01/01/2000')
 
 // Checkbox refs
 const youngFamilies = ref(false);
@@ -302,78 +198,37 @@ const disabledOrChronicIllness = ref(false);
 const tenantsOfSocialHousing = ref(false);
 const general = ref(false);
 
-// family members add function
-const updateFamilyMembers = () => {
-  const newLength = numFamilyMembers.value;
-  while (familyMembers.value.length < newLength) {
-    familyMembers.value.push({
-      name: 'Default Name',
-      lastName: 'Default Last Name',
-      dateOfBirth: '01/01/2000',
-      disabilityLevel: 'none',
-      idNumber: '123',
-    });
-  }
-  while (familyMembers.value.length > newLength) {
-    familyMembers.value.pop();
-  }
-};
+const onSubmit = () => {
+  const formData = {
+    applicantDetails: {
+      personalNumber: idNumber.value,
+      firstName: name.value,
+      lastName: lastName.value,
+      birthDate: personalDateOfBirth.value,
+      email: email.value,
+      phoneNumber: phoneNumber.value,
 
-const formData: any = {
-  applicantDetails: {
-    personalNumber: idNumber.value,
-    firstName: name.value,
-    lastName: lastName.value,
-    birthDate: personalDateOfBirth.value,
-    email: email.value,
-    phoneNumber: phoneNumber.value,
-
-    disabilityLevel: persDisable.value,
-    householdIncome: incomeHousehold.value,
-    sizeOfOccupiedProperty: address.value,
-    address: {
-      city: city.value,
-      district: district.value,
-      street: street.value,
-      houseNumber: houseNumber.value,
-      flatNumber: flatNumber.value,
-      zipCode: zipCode.value,
+      disabilityLevel: persDisable.value,
+      householdIncome: incomeHousehold.value,
+      sizeOfOccupiedProperty: address.value,
+      address: { city: city.value, district: district.value, street: street.value, houseNumber: houseNumber.value, flatNumber: flatNumber.value, zipCode: zipCode.value }
     },
-  },
-  FamilyMembers: {
-    count: numFamilyMembers.value,
-    familyDetails: familyMembers.value,
-  },
-  applicationType: {
-    youngFamilies: youngFamilies.value,
-    tenantsOfSocialHousing: tenantsOfSocialHousing.value,
-  },
-};
+    FamilyMembers: { count: numFamilyMembers.value, familyDetails: familyMembers.value, },
+    applicationType: {
+      youngFamilies: youngFamilies.value,
+      tenantsOfSocialHousing: tenantsOfSocialHousing.value,
+    },
+  };
 
-
-const sendApplication = (data: any) => {
-  console.log(data)
-  axios.put(`http://localhost:3000/api/v1/applications/new`, data)
-                .then(res => {
-                    console.log('Update successful:', res.data);
-                })
-                .catch(error => {
-                    console.error('ERR:', error);
-                });
-}
-
-
-const onsubmit = () => {
-  sendApplication(formData)
+  console.log(JSON.stringify(formData));
   router.push('/confirmation');
-}
 
-watch(numFamilyMembers, updateFamilyMembers);
+};
 </script>
 
+
 <style scoped>
-.title {
-}
+.title {}
 
 .selection-dis {
   display: flex;
@@ -466,8 +321,7 @@ button:hover {
   padding: 0 15px;
 }
 
-.familyMemeber {
-}
+.familyMemeber {}
 
 .in {
   margin: 5px;
@@ -480,6 +334,6 @@ button:hover {
 }
 
 .names {
-  padding-top: 20px;
+  padding-top: 20px
 }
 </style>
