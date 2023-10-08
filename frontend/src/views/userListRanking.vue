@@ -1,4 +1,5 @@
 <template>
+
   <div class="container">
     <div class="row">
       <h1 class="title">Waiting List</h1>
@@ -25,6 +26,7 @@
         </table>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -101,6 +103,7 @@ fetchHouses();
 .table-holder {
   padding: 30px;
 }
+
 table {
   padding-left: 20px;
   width: 100%;

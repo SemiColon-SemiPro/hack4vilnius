@@ -15,7 +15,7 @@ import acceptedOfferedUserList from '../views/acceptedOfferedUserList.vue';
 import ThankYou from '../views/thankYou.vue';
 import PropertiesApprove from '../views/propApprove.vue';
 import MatchesApprove from '../views/matchApprove.vue';
-
+import IndividualApplication from '../views/indApplication.vue';
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -24,6 +24,12 @@ const router = createRouter({
       name: 'home',
 
       component: HomeView,
+    },
+    {
+      path: '/indApplication',
+      name: 'indApplication',
+
+      component: IndividualApplication,
     },
     {
       path: '/confirmation',

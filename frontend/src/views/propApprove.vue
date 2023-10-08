@@ -1,76 +1,7 @@
-<template>
-  <h1 class="title">Waiting List</h1>
-  <div class="table-holder">
-    <table>
-      <thead>
-        <tr>
-          <th>Ranking</th>
-          <th>Application ID</th>
-          <th>Days Waited</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="house in houses" :key="house.address">
-          <td>{{ house.size }}</td>
-          <td>{{ house.numberOfRooms }}</td>
-          <td>{{ house.floor }}</td>
-          <td>{{ house.address }}</td>
-          <td>{{ house.price }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { ref } from "vue";
 
-const houses = ref([
-  {
-    size: "100 sqm",
-    numberOfRooms: 3,
-    floor: 2,
-    address: "123 Pigu Street, Vilnius",
-    price: "200 UEUR",
-  },
-  {
-    size: "150 sqm",
-    numberOfRooms: 4,
-    floor: 5,
-    address: "456 Zidu Avenue, Vilnius",
-    price: "25 EUR",
-  },
-  {
-    size: "80 sqm",
-    numberOfRooms: 2,
-    floor: 1,
-    address: "79 Egle Blvd, Vilnius",
-    price: "180",
-  },
-  {
-    size: "100 sqm",
-    numberOfRooms: 3,
-    floor: 2,
-    address: "123 Pigu Street, Vilnius",
-    price: "200 UEUR",
-  },
-  {
-    size: "150 sqm",
-    numberOfRooms: 4,
-    floor: 5,
-    address: "456 Zidu Avenue, Vilnius",
-    price: "25 EUR",
-  },
-  {
-    size: "80 sqm",
-    numberOfRooms: 2,
-    floor: 1,
-    address: "79 Egle Blvd, Vilnius",
-    price: "180",
-  },
-]);
-
-const listOfHouses = ref<any[]>([]); // initialize it as an empty array or null
+const listOfHouses = ref<any[]>([]);
 
 async function fetchHouses() {
   try {
@@ -80,9 +11,9 @@ async function fetchHouses() {
     }
 
     const data: any = await response.json();
-    console.log(response);
+    console.log(data);
 
-    listOfHouses.value = data; // set the data to listOfHouses ref here
+    listOfHouses.value = data.houses;
   } catch (error) {
     console.error("There was a problem fetching houses:", error);
   }
@@ -90,6 +21,32 @@ async function fetchHouses() {
 
 fetchHouses();
 </script>
+
+<template>
+  <h1 class="title">List of properties</h1>
+  <div class="table-holder">
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Number of Rooms</th>
+          <th>Size</th>
+          <th>Address</th>
+          <th>Floor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="house in listOfHouses" :key="house.id">
+          <td>{{ house.category }}</td>
+          <td>{{ house.rooms_number }}</td>
+          <td>{{ house.useful_mq }}</td>
+          <td>{{ house.house_number }} {{ house.street }}</td>
+          <td>{{ house.floor }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</template>
 
 <style scoped>
 .table-holder {

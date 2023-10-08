@@ -1,5 +1,5 @@
 <template>
-  <h1 class="title">Waiting List</h1>
+  <h1 class="title">New Applications</h1>
   <div class="table-holder">
     <table>
       <thead>
@@ -7,15 +7,21 @@
           <th>Ranking</th>
           <th>Application ID</th>
           <th>Days Waited</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="house in houses" :key="house.address">
+        <tr v-for="(house, index) in houses" :key="house.address">
           <td>{{ house.size }}</td>
-          <td>{{ house.numberOfRooms }}</td>
+
+          <td>
+            <router-link to="/indApplication">
+              {{ house.numberOfRooms }}
+            </router-link>
+          </td>
           <td>{{ house.floor }}</td>
-          <td>{{ house.address }}</td>
-          <td>{{ house.price }}</td>
+          <td><button type="button" @click="cancelTheOffer(index)">Approve</button></td>
+
         </tr>
       </tbody>
     </table>
@@ -24,8 +30,11 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-
-const houses = ref([
+import { RouterView } from 'vue-router';
+import router from '../router/index';
+function cancelTheOffer(index: number) {
+  houses.value.splice(index, 1);
+} const houses = ref([
   {
     size: "100 sqm",
     numberOfRooms: 3,
@@ -109,3 +118,4 @@ td {
   text-align: left;
 }
 </style>
+
