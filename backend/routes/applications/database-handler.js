@@ -3,7 +3,13 @@ import db from "../../database/index.js";
 // queries
 
 const SELECT_APPLICATIONS = "SELECT * FROM applications";
-const SELECT_APPLICATION_BY_ID = "SELECT * FROM applications WHERE id = ?";
+const SELECT_APPLICATION_BY_ID =
+	"SELECT applications.id, applications.status, applications.score, applications.occupied_property, applications.useful_mq, applications.assigned_house_id, applications.created_at," +
+	"applicants.personal_number, applicants.first_name, applicants.last_name, applicants.date_of_birth, " +
+	"applicants.disability_level, applicants.income, applicants.email, applicants.phone_number, applicants.applicant_type," +
+	"addresses.city, addresses.district, addresses.street, addresses.house_number, addresses.flat_number, addresses.zip_code " +
+	" FROM applications JOIN applicants ON applications.id = applicants.application_id " +
+	" JOIN addresses ON applicants.address_id = addresses.id WHERE applications.id = ?";
 const SELECT_APPLICATIONS_WITH_NUM_APPLICANTS = `
 SELECT applications.score, applications.status, application_id , COUNT() count_of_applicants
 FROM applicants
@@ -54,7 +60,7 @@ export const insertAddress = (addressData) => {
 
 export const insertApplicants = (applicationId, addressId, applicantsData) => {
 	const timestamp = new Date().toISOString();
-	console.info(applicantsData)
+	console.info(applicantsData);
 	applicantsData.forEach((applicant) => {
 		const stmt = db.prepare(INSERT_APPLICANT);
 		stmt.run([
@@ -103,7 +109,7 @@ export const getApplications = () => {
 };
 
 export const getApplicationById = (id) => {
-	const application = db.prepare(SELECT_APPLICATION_BY_ID).get(id);
+	const application = db.prepare(SELECT_APPLICATION_BY_ID).all(id);
 	console.debug(`Application with id ${id} retrieved: `, application);
 	return application;
 };
