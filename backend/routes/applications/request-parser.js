@@ -1,12 +1,8 @@
-import crypto from "node:crypto";
-
 const parseRequest = (requestObj) => {
 	let applicationData = {
-		id: crypto.randomUUID(),
+		id: generateId(requestObj.applicantDetails.personalNumber),
 		status: "new",
 		score: 0,
-		created_at: new Date().toISOString(),
-		updated_at: new Date().toISOString(),
 		occupied_property: requestObj.applicationType.tenantsOfSocialHousing,
 		useful_mq: requestObj.applicantDetails.sizeOfOccupiedProperty,
 	};
@@ -21,6 +17,7 @@ const parseRequest = (requestObj) => {
 			email: requestObj.applicantDetails.email,
 			phoneNumber: requestObj.applicantDetails.phoneNumber,
 			disabilityLevel: requestObj.applicantDetails.disabilityLevel,
+			income: requestObj.applicantDetails.householdIncome,
 		},
 	];
 
@@ -38,10 +35,29 @@ const parseRequest = (requestObj) => {
 		});
 	}
 
+	let addressData = {
+		address: requestObj.applicantDetails.address,
+	};
+
 	return {
 		applicantsData: applicantsData,
 		applicationData: applicationData,
+		addressData: addressData,
 	};
+};
+
+const generateId = (personalId) => {
+	const date = new Date().toISOString().split("T")[0].split("-");
+	const year = date[0].split("").splice(2, 2).join("");
+	const month = date[1];
+	const day = date[2];
+	return `${year}${month}${day}${randomLetter()}${personalId.slice(-4)}`;
+};
+
+const randomLetter = () => {
+	const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	const randomLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
+	return randomLetter;
 };
 
 export default parseRequest;

@@ -1,10 +1,12 @@
 import { Router } from "express";
-import db from "../../database/index.js";
 import applicationsSchema from "./schema.js";
 import {
-	getApplicationById,
 	getApplications,
 	getNumberOfApplicants,
+	insertApplication,
+	insertApplicants,
+	insertAddress,
+	getAddressId,
 } from "./database-handler.js";
 import parseRequest from "./request-parser.js";
 
@@ -45,8 +47,18 @@ applicationsRouter.route("/").get((req, res) => {
 
 applicationsRouter.route("/new").put(async (req, res) => {
 	try {
-		const validatedRequest = await applicationsSchema.validateAsync(req.body);
+		const validatedRequest = await applicationsSchema.validateAsync(
+			req.body,
+		);
 		const parsedRequest = parseRequest(validatedRequest);
+		await insertApplication(parsedRequest.applicationData);
+		const timestamp = await insertAddress(parsedRequest.addressData.address);
+		const id = await getAddressId(parsedRequest.addressData.address, timestamp);
+		insertApplicants(
+			parsedRequest.applicationData.id,
+			id,
+			parsedRequest.applicantsData,
+		);
 		res.status(200).json(parsedRequest);
 	} catch (e) {
 		res.status(400).json({ code: 400, message: e.message });
