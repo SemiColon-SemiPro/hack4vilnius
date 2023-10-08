@@ -155,22 +155,22 @@ const familyMembers = ref([]);
 const persDisable = ref("none")
 
 
-const city = ref('How');
-const district = ref(' deep');
-const street = ref('is');
-const houseNumber = ref('your');
-const flatNumber = ref('love');
-const zipCode = ref('it');
+const city = ref('Vilnius');
+const district = ref('Zirmunai');
+const street = ref('Apkasu g.');
+const houseNumber = ref('40');
+const flatNumber = ref('A');
+const zipCode = ref('LT08225');
 
 const updateFamilyMembers = () => {
   const newLength = numFamilyMembers.value;
   while (familyMembers.value.length < newLength) {
     familyMembers.value.push({
-      name: 'Default Name',
-      lastName: 'Default Last Name',
-      dateOfBirth: '01/01/2000',
+      name: 'Marta',
+      lastName: 'Adomaitis',
+      dateOfBirth: '01/02/2000',
       disabilityLevel: "none",
-      idNumber: "123"
+      idNumber: "40002010099"
     });
   }
   while (familyMembers.value.length > newLength) {
@@ -181,14 +181,14 @@ const updateFamilyMembers = () => {
 watch(numFamilyMembers, updateFamilyMembers);
 
 // Text/Number Input refs
-const idNumber = ref('94u0943u5');
-const name = ref('John');
-const lastName = ref('Doe');
-const email = ref('john.doe@example.com');
-const phoneNumber = ref('123-456-7890');
-const address = ref("ffpfpfpf")
-const incomeHousehold = ref()
-const personalDateOfBirth = ref('01/01/2000')
+const idNumber = ref('38102030123');
+const name = ref('Adomas');
+const lastName = ref('Adomaitis');
+const email = ref('adomas.adomaitis@example.com');
+const phoneNumber = ref('+37065549303');
+const address = ref("43.25")
+const incomeHousehold = ref(6882)
+const personalDateOfBirth = ref('03/02/1981')
 
 // Checkbox refs
 const youngFamilies = ref(false);

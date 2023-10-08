@@ -25,6 +25,9 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+
+
+
 function cancelTheOffer(index: number) {
   houses.value.splice(index, 1);
 } const houses = ref([

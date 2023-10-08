@@ -20,7 +20,7 @@
               <td>{{ listOfApplications.indexOf(application) + 1 }}</td>
               <td>{{ application.score }}</td>
               <td>{{ application.id }}</td>
-              <td>{{ getRandomDays(50) }}</td>
+              <td>{{ getRandomDays(10) }}</td>
             </tr>
           </tbody>
         </table>

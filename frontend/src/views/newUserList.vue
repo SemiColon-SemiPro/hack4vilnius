@@ -19,7 +19,7 @@
               {{ app.id }}
             </router-link>
           </td>
-          <td>8</td>
+          <td>{{ getRandomDays(10) }}</td>
           <td>
             <button type="button" @click="cancelApplication(app.id)">
               Approve
@@ -35,6 +35,11 @@
 import { ref } from 'vue';
 import { RouterView } from 'vue-router';
 import router from '../router/index';
+
+function getRandomDays(max: number) {
+  return Math.floor(Math.random() * max);
+}
+
 function cancelApplication(id: string) {
   let idx = 0;
   listOfApplications.value.forEach(app => {
