@@ -1,0 +1,6 @@
+BEGIN TRANSACTION;
+
+ALTER TABLE applicants
+ADD personal_number TEXT;
+
+COMMIT;

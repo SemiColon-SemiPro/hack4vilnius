@@ -3,25 +3,30 @@
 BEGIN TRANSACTION;
 
 CREATE TABLE IF NOT EXISTS applications (
-  id INTEGER PRIMARY KEY,
+  id TEXT UNIQUE PRIMARY KEY,
   status TEXT NOT NULL,
   score INTEGER NOT NULL,
+  occupied_property TEXT,
+  useful_mq INTEGER,
+  assigned_house_id TEXT,
   created_at TEXT,
-  updated_at TEXT
+  updated_at TEXT,
+  FOREIGN KEY(assigned_house_id) REFERENCES houses(id)
 );
 
 CREATE TABLE IF NOT EXISTS applicants (
-  id INTEGER PRIMARY KEY,
+  personal_number TEXT UNIQUE PRIMARY KEY,
   first_name TEXT NOT NULL,
-  middle_name TEXT,
   last_name TEXT NOT NULL,
-  age INTEGER NOT NULL,
+  date_of_birth TEXT NOT NULL,
   disability_level INTEGER,
-  refugee INTEGER,
   income INTEGER,
   flag INTEGER,
+  email TEXT,
+  phone_number TEXT,
+  applicant_type TEXT,
   address_id INTEGER,
-  application_id INTEGER,
+  application_id TEXT,
   created_at TEXT,
   updated_at TEXT,
   FOREIGN KEY(application_id) REFERENCES applications(id),
@@ -29,7 +34,7 @@ CREATE TABLE IF NOT EXISTS applicants (
 );
 
 CREATE TABLE IF NOT EXISTS houses (
-  id TEXT PRIMARY KEY,
+  id TEXT UNIQUE PRIMARY KEY,
   available INTEGER NOT NULL,
   useful_mq TEXT NOT NULL,
   category TEXT NOT NULL,
@@ -37,11 +42,9 @@ CREATE TABLE IF NOT EXISTS houses (
   floor INTEGER,
   rooms_number INTEGER,
   elevator INTEGER,
-  assigned_to INTEGER,
   address_id INTEGER,
   created_at TEXT,
   updated_at TEXT,
-  FOREIGN KEY(assigned_to) REFERENCES applicants(id),
   FOREIGN KEY(address_id) REFERENCES addresses(id)
 );
 
@@ -52,7 +55,7 @@ CREATE TABLE IF NOT EXISTS addresses (
   street TEXT NOT NULL,
   house_number TEXT NOT NULL,
   flat_number TEXT,
-  zip TEXT,
+  zip_code TEXT,
   created_at TEXT,
   updated_at TEXT
 );
