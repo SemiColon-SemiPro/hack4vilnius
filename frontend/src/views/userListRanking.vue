@@ -10,17 +10,17 @@
           <thead>
             <tr>
               <th>Ranking</th>
+              <th>Score</th>
               <th>Application ID</th>
               <th>Days Waited</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="house in houses" :key="house.address">
-              <td>{{ house.size }}</td>
-              <td>{{ house.numberOfRooms }}</td>
-              <td>{{ house.floor }}</td>
-              <td>{{ house.address }}</td>
-              <td>{{ house.price }}</td>
+            <tr v-for="application in listOfApplications" :key="application.id">
+              <td>{{ listOfApplications.indexOf(application) + 1 }}</td>
+              <td>{{ application.score }}</td>
+              <td>{{ application.id }}</td>
+              <td>{{ getRandomDays(50) }}</td>
             </tr>
           </tbody>
         </table>
@@ -33,70 +33,29 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-const houses = ref([
-  {
-    size: "100 sqm",
-    numberOfRooms: 3,
-    floor: 2,
-    address: "123 Pigu Street, Vilnius",
-    price: "200 UEUR",
-  },
-  {
-    size: "150 sqm",
-    numberOfRooms: 4,
-    floor: 5,
-    address: "456 Zidu Avenue, Vilnius",
-    price: "25 EUR",
-  },
-  {
-    size: "80 sqm",
-    numberOfRooms: 2,
-    floor: 1,
-    address: "79 Egle Blvd, Vilnius",
-    price: "180",
-  },
-  {
-    size: "100 sqm",
-    numberOfRooms: 3,
-    floor: 2,
-    address: "123 Pigu Street, Vilnius",
-    price: "200 UEUR",
-  },
-  {
-    size: "150 sqm",
-    numberOfRooms: 4,
-    floor: 5,
-    address: "456 Zidu Avenue, Vilnius",
-    price: "25 EUR",
-  },
-  {
-    size: "80 sqm",
-    numberOfRooms: 2,
-    floor: 1,
-    address: "79 Egle Blvd, Vilnius",
-    price: "180",
-  },
-]);
+function getRandomDays(max: number) {
+  return Math.floor(Math.random() * max);
+}
 
-const listOfHouses = ref<any[]>([]); // initialize it as an empty array or null
+const listOfApplications = ref<any[]>([]); // initialize it as an empty array or null
 
-async function fetchHouses() {
+async function fetchApplications() {
   try {
-    const response = await fetch("http://localhost:3000/api/v1/houses");
+    const response = await fetch("http://localhost:3000/api/v1/applications?status=pending");
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
 
     const data: any = await response.json();
-    console.log(response);
+    console.log(data);
 
-    listOfHouses.value = data; // set the data to listOfHouses ref here
+    listOfApplications.value = data.applications; // set the data to listOfHouses ref here
   } catch (error) {
-    console.error("There was a problem fetching houses:", error);
+    console.error("There was a problem fetching applications:", error);
   }
 }
 
-fetchHouses();
+fetchApplications();
 </script>
 
 <style>
