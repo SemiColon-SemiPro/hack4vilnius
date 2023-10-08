@@ -7,7 +7,6 @@ import {
 	insertApplicants,
 	insertAddress,
 	getAddressId,
-	getScore,
 	getApplicationById,
 } from "./database-handler.js";
 import calculateScore from "../../models/index.js";
@@ -18,6 +17,7 @@ const applicationsRouter = Router();
 
 applicationsRouter.route("/").get(async (req, res) => {
 	const desiredNumApplicants = parseInt(req.query.group);
+	const idToFind = req.query.id;
 	let applicationList = "";
 
 	if (!desiredNumApplicants) {
@@ -58,6 +58,19 @@ applicationsRouter.route("/").get(async (req, res) => {
 			console.error(error);
 			res.status(500).json({ error: "Internal Server Error" });
 		}
+	} else {
+		applicationList = await getNumberOfApplicants(desiredNumApplicants);
+	}
+
+	if (applicationList.length === 0) {
+		res.status(404).json({
+			error: {
+				code: 404,
+				message: "No applications found",
+			},
+		});
+	} else {
+		res.status(200).json({ applications: applicationList });
 	}
 });
 
