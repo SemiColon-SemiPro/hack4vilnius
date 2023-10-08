@@ -29,6 +29,7 @@ const applicationsSchema = Joi.object({
 			.required()
 			.items(
 				Joi.object({
+					personalNumber: Joi.string().required(),
 					firstName: Joi.string().required(),
 					lastName: Joi.string().required(),
 					dateOfBirth: Joi.string().required(),

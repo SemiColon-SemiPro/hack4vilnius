@@ -1,7 +1,7 @@
 import db from "../../database/index.js";
 
 // queries
-const SELECT_APPLICAITONS = "SELECT * FROM applications";
+const SELECT_APPLICATIONS = "SELECT * FROM applications";
 const SELECT_APPLICATION_BY_ID = "SELECT * FROM applications WHERE id = ?";
 const SELECT_APPLICATIONS_WITH_NUM_APPLICANTS = `
 SELECT applications.score, applications.status, application_id , COUNT() count_of_applicants
@@ -19,8 +19,13 @@ const INSERT_ADDRESS =
 	"INSERT INTO addresses (city, district, street, house_number, flat_number, zip_code, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 const SELECT_ADDRESS_ID =
 	"SELECT id FROM addresses WHERE street = ? AND house_number = ? AND created_at = ?";
+const GET_SCORE = "SELECT score FROM applications WHERE id = ?";
 
 // functions
+export const getScore = (applicationId) => {
+	return db.prepare(GET_SCORE).get([applicationId]);
+};
+
 export const getAddressId = (addressData, timestamp) => {
 	const id = db
 		.prepare(SELECT_ADDRESS_ID)
@@ -29,7 +34,7 @@ export const getAddressId = (addressData, timestamp) => {
 	return id;
 };
 
-export const insertAddress = async (addressData) => {
+export const insertAddress = (addressData) => {
 	const timestamp = new Date().toISOString();
 	const stmt = db.prepare(INSERT_ADDRESS);
 	stmt.run([
@@ -46,12 +51,9 @@ export const insertAddress = async (addressData) => {
 	return timestamp;
 };
 
-export const insertApplicants = async (
-	applicationId,
-	addressId,
-	applicantsData,
-) => {
+export const insertApplicants = (applicationId, addressId, applicantsData) => {
 	const timestamp = new Date().toISOString();
+	console.info(applicantsData)
 	applicantsData.forEach((applicant) => {
 		const stmt = db.prepare(INSERT_APPLICANT);
 		stmt.run([
@@ -77,7 +79,7 @@ export const insertApplicants = async (
 	});
 };
 
-export const insertApplication = async (applicationData) => {
+export const insertApplication = (applicationData) => {
 	const timestamp = new Date().toISOString();
 	db.prepare(INSERT_APPLICATION).run([
 		applicationData.id,
@@ -93,19 +95,19 @@ export const insertApplication = async (applicationData) => {
 	);
 };
 
-export const getApplications = async () => {
-	const applications = db.prepare(SELECT_APPLICAITONS).all();
+export const getApplications = () => {
+	const applications = db.prepare(SELECT_APPLICATIONS).all();
 	console.debug("Number of applications retrieved: ", applications.length);
 	return applications;
 };
 
-export const getApplicationById = async (id) => {
+export const getApplicationById = (id) => {
 	const application = db.prepare(SELECT_APPLICATION_BY_ID).get(id);
 	console.debug(`Application with id ${id} retrieved: `, application);
 	return application;
 };
 
-export const getNumberOfApplicants = async (num) => {
+export const getNumberOfApplicants = (num) => {
 	const applications = db
 		.prepare(SELECT_APPLICATIONS_WITH_NUM_APPLICANTS)
 		.all(num);
