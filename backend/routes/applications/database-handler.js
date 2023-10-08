@@ -2,7 +2,9 @@ import db from "../../database/index.js";
 
 // queries
 
-const SELECT_APPLICATIONS = "SELECT * FROM applications";
+const SELECT_APPLICATIONS = "SELECT * FROM applications ORDER BY score DESC";
+const SELECT_APPLICATIONS_BY_STATUS =
+	"SELECT * FROM applications WHERE status = ? ORDER BY score DESC";
 const SELECT_APPLICATION_BY_ID =
 	"SELECT applications.id, applications.status, applications.score, applications.occupied_property, applications.useful_mq, applications.assigned_house_id, applications.created_at," +
 	"applicants.personal_number, applicants.first_name, applicants.last_name, applicants.date_of_birth, " +
@@ -11,12 +13,13 @@ const SELECT_APPLICATION_BY_ID =
 	" FROM applications JOIN applicants ON applications.id = applicants.application_id " +
 	" JOIN addresses ON applicants.address_id = addresses.id WHERE applications.id = ?";
 const SELECT_APPLICATIONS_WITH_NUM_APPLICANTS = `
-SELECT applications.score, applications.status, application_id , COUNT() count_of_applicants
+SELECT applications.score, applications.status, application_id , COUNT(*) count_of_applicants
 FROM applicants
 JOIN applications
 ON application_id = applications.id
+WHERE applications.status = ?
 GROUP BY application_id
-HAVING COUNT() = ?;
+HAVING COUNT(*) = ?;
 `;
 const INSERT_APPLICATION =
 	"INSERT INTO applications (id, status, score, created_at, updated_at, occupied_property, useful_mq) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -102,8 +105,15 @@ export const insertApplication = (applicationData) => {
 	);
 };
 
-export const getApplications = () => {
-	const applications = db.prepare(SELECT_APPLICATIONS).all();
+export const getApplications = (status) => {
+	let applications = [];
+
+	if (status) {
+		applications = db.prepare(SELECT_APPLICATIONS_BY_STATUS).all([status]);
+	} else {
+		applications = db.prepare(SELECT_APPLICATIONS).all();
+	}
+
 	console.debug("Number of applications retrieved: ", applications.length);
 	return applications;
 };
@@ -114,10 +124,10 @@ export const getApplicationById = (id) => {
 	return application;
 };
 
-export const getNumberOfApplicants = (num) => {
+export const getNumberOfApplicants = (num, status) => {
 	const applications = db
 		.prepare(SELECT_APPLICATIONS_WITH_NUM_APPLICANTS)
-		.all(num);
+		.all([status, num]);
 	console.debug(
 		"Applications with",
 		num,
