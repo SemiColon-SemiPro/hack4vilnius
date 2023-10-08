@@ -18,11 +18,13 @@ const applicationsRouter = Router();
 
 applicationsRouter.route("/").get(async (req, res) => {
 	const desiredNumApplicants = parseInt(req.query.group);
+	const status = req.query.status;
+
 	let applicationList = "";
 
 	if (!desiredNumApplicants) {
 		try {
-			applicationList = await getApplications();
+			applicationList = getApplications(status);
 
 			if (applicationList.length === 0) {
 				res.status(404).json({
@@ -41,7 +43,7 @@ applicationsRouter.route("/").get(async (req, res) => {
 		}
 	} else {
 		try {
-			applicationList = await getNumberOfApplicants(desiredNumApplicants);
+			applicationList = getNumberOfApplicants(desiredNumApplicants, status);
 
 			if (applicationList.length === 0) {
 				res.status(404).json({
