@@ -60,15 +60,11 @@ span {
 }
 
 .grid-container {
-  padding: 20px;  
+  padding: 20px;
   display: grid;
   grid-template-columns: 30vw 30vw 30vw;
-<<<<<<< HEAD
-  gap: 5vw;
+  column-gap: 3vw;
   /* Adjust as needed for space between the grid items */
-=======
-  column-gap: 3vw; /* Adjust as needed for space between the grid items */
->>>>>>> 2a180c108e806510f91786b06cf0c4dddd5e0633
 }
 
 #dates {
