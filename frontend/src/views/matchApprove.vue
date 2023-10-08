@@ -108,8 +108,4 @@ td {
   padding: 8px;
   text-align: left;
 }
-
-th {
-  background-color: #f2f2f2;
-}
 </style>

@@ -19,13 +19,13 @@ const currentStage = ref(1); // Change this value to represent the current stage
 
 <style scoped>
 .progress-container {
+  border: 1px solid black;
   display: flex;
   justify-content: space-between;
   width: 100%;
 }
 
 .stage {
-  border: 1px solid black;
   width: 25%;
   padding: 10px;
   background-color: #e0e0e0;

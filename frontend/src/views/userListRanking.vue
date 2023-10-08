@@ -1,24 +1,30 @@
 <template>
-  <h1 class="title">Waiting List</h1>
-  <div class="table-holder">
-    <table>
-      <thead>
-        <tr>
-          <th>Ranking</th>
-          <th>Application ID</th>
-          <th>Days Waited</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="house in houses" :key="house.address">
-          <td>{{ house.size }}</td>
-          <td>{{ house.numberOfRooms }}</td>
-          <td>{{ house.floor }}</td>
-          <td>{{ house.address }}</td>
-          <td>{{ house.price }}</td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="container">
+    <div class="row">
+      <h1 class="title">Waiting List</h1>
+    </div>
+    <div class="row">
+      <div class="table-holder">
+        <table>
+          <thead>
+            <tr>
+              <th>Ranking</th>
+              <th>Application ID</th>
+              <th>Days Waited</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="house in houses" :key="house.address">
+              <td>{{ house.size }}</td>
+              <td>{{ house.numberOfRooms }}</td>
+              <td>{{ house.floor }}</td>
+              <td>{{ house.address }}</td>
+              <td>{{ house.price }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -91,7 +97,7 @@ async function fetchHouses() {
 fetchHouses();
 </script>
 
-<style scoped>
+<style>
 .table-holder {
   padding: 30px;
 }
@@ -109,6 +115,20 @@ td {
 }
 
 th {
-  background-color: #f2f2f2;
+  color: azure;
+  font-size: 1.7rem;
+  border: solid black 3px;
+}
+
+thead {
+  background-color: #0e60ad;
+}
+
+.table-holder tr:nth-child(even) {
+  background: rgb(192, 221, 240);
+}
+
+.table-holder tr {
+  font-size: 1.25rem;
 }
 </style>
