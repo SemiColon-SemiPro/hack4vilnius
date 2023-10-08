@@ -1,6 +1,7 @@
 import db from "../../database/index.js";
 
 // queries
+
 const SELECT_APPLICATIONS = "SELECT * FROM applications";
 const SELECT_APPLICATION_BY_ID = "SELECT * FROM applications WHERE id = ?";
 const SELECT_APPLICATIONS_WITH_NUM_APPLICANTS = `
