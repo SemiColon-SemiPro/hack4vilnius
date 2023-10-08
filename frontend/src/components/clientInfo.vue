@@ -23,7 +23,7 @@
             <div class="col-12 col-md-6">
               <input type="text" placeholder="Address" v-model="address" required />
             </div>
-            <div class="col-12 col-md-6">
+            <div class="col-12">
               <input type="number" placeholder="income" v-model="incomeHousehold" required />
             </div>
             <div class="selection-dis">
@@ -129,7 +129,12 @@
               and families not listed)
             </label>
           </div>
-
+          <div style="padding-bottom: 20px">
+            <label class="label-up" for="password">Password</label>
+            <input type="password" placeholder="Password" required value="12345678a">
+            <label class="label-up" for="password-re">Re-enter password</label>
+            <input type="password" placeholder="Password" required value="12345678a">
+          </div>
           <button type="submit">Submit</button>
         </div>
       </form>

@@ -1,9 +1,19 @@
 <template>
-  <h1 class="title">User Login</h1>
-  <div class="login-holder">
-    <img id="user-login-img" src="../../images/house.png" alt="nice house">
-    <LogIn />
+  <div class="container">
+    <div class="row">
+      <h1 class="title">User Login</h1>
+    </div>
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <img id="user-login-img" src="../../images/house.png" alt="nice house">
+      </div>
+      <div class="col-12 col-md-6">
+        <LogIn />
+      </div>
+    </div>
   </div>
+  <!-- <div class="login-holder">
+  </div> -->
 </template>
 
 <script setup lang="ts">
