@@ -2,10 +2,11 @@
 import db from "../../database/index.js";
 
 // queries
-const SELECT_HOUSES = "SELECT * FROM houses";
+const SELECT_HOUSES = "SELECT * FROM houses JOIN addresses ON houses.address_id = addresses.id";
 const SELECT_HOUSES_BY_AVAILABILITY =
-	"SELECT * FROM houses WHERE available = ?";
-const SELECT_HOUSE_BY_ID = "SELECT * FROM houses WHERE id = ?";
+	"SELECT * FROM houses JOIN addresses ON houses.address_id = addresses.id WHERE available = ?";
+const SELECT_HOUSE_BY_ID =
+	"SELECT * FROM houses JOIN addresses ON houses.address_id = addresses.id WHERE id = ?";
 const UPDATE_HOUSE_AVAILABILITY = `
 UPDATE houses
 SET available = CASE
@@ -14,7 +15,8 @@ SET available = CASE
 END
 WHERE id = ?
 `;
-const SELECT_HOUSES_BY_CAPACITY = "SELECT * FROM houses WHERE capacity = ?";
+const SELECT_HOUSES_BY_CAPACITY =
+	"SELECT * FROM houses JOIN addresses ON houses.address_id = addresses.id WHERE capacity = ?";
 
 // functions
 export const getHouses = () => {

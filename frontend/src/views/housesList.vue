@@ -40,7 +40,7 @@ fetchHouses();
           <td>{{ house.category }}</td>
           <td>{{ house.rooms_number }}</td>
           <td>{{ house.useful_mq }}</td>
-          <td>{{ house.house_number }} {{ house.street }}</td>
+          <td> {{ house.street }} {{ house.house_number }} {{ house.flat_number }}, {{ house.district }}, {{ house.city }}</td>
           <td>{{ house.floor }}</td>
         </tr>
       </tbody>
