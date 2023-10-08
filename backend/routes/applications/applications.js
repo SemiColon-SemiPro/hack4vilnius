@@ -7,41 +7,40 @@ import {
 	insertApplicants,
 	insertAddress,
 	getAddressId,
+	getApplicationById,
 } from "./database-handler.js";
 import parseRequest from "./request-parser.js";
 
 const applicationsRouter = Router();
 
-applicationsRouter.route("/").get((req, res) => {
+applicationsRouter.route("/").get(async (req, res) => {
 	const desiredNumApplicants = parseInt(req.query.group);
+	const idToFind = req.query.id;
 	let applicationList = "";
-	if (!desiredNumApplicants) {
-		applicationList = getApplications();
-		if (applicationList.length === 0) {
-			res.status(404).json({
-				error: {
-					code: 404,
-					message: "No applications found in the database",
-				},
-			});
-		}
-		if (applicationList.length !== 0) {
-			res.status(200).json({ applications: applicationList });
+
+	if (!desiredNumApplicants && !idToFind) {
+		applicationList = await getApplications();
+	} else if (!desiredNumApplicants && idToFind) {
+		const application = await getApplicationById(idToFind);
+
+		if (application) {
+			applicationList = [application];
+		} else {
+			applicationList = [];
 		}
 	} else {
-		applicationList = getNumberOfApplicants(desiredNumApplicants);
+		applicationList = await getNumberOfApplicants(desiredNumApplicants);
+	}
 
-		if (applicationList.length === 0) {
-			res.status(404).json({
-				error: {
-					code: 404,
-					message:
-						"No applications found with the specified number of applicants",
-				},
-			});
-		} else {
-			res.status(200).json({ applications: applicationList });
-		}
+	if (applicationList.length === 0) {
+		res.status(404).json({
+			error: {
+				code: 404,
+				message: "No applications found",
+			},
+		});
+	} else {
+		res.status(200).json({ applications: applicationList });
 	}
 });
 
@@ -52,8 +51,13 @@ applicationsRouter.route("/new").put(async (req, res) => {
 		);
 		const parsedRequest = parseRequest(validatedRequest);
 		await insertApplication(parsedRequest.applicationData);
-		const timestamp = await insertAddress(parsedRequest.addressData.address);
-		const id = await getAddressId(parsedRequest.addressData.address, timestamp);
+		const timestamp = await insertAddress(
+			parsedRequest.addressData.address,
+		);
+		const id = await getAddressId(
+			parsedRequest.addressData.address,
+			timestamp,
+		);
 		insertApplicants(
 			parsedRequest.applicationData.id,
 			id,
