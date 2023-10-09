@@ -1,11 +1,11 @@
 import sqlite from "better-sqlite3";
-import createTables from "./migration/createTables/index.js";
-import addHousesAndAddresses from "./migration/addHouses/index.js";
-import { addApplications } from "./migration/addApplications/index.js";
-import { addApplicants } from "./migration/addApplicants/index.js";
-import { addApplicantsAddresses } from "./migration/addAddresses/index.js";
+import createTables from "./scripts/createTables/index.js";
+import addHousesAndAddresses from "./scripts/addHouses/index.js";
+import { addApplications } from "./scripts/addApplications/index.js";
+import { addApplicants } from "./scripts/addApplicants/index.js";
+import { addApplicantsAddresses } from "./scripts/addAddresses/index.js";
 import sample_data from "./data/application_samples.json" assert { type: "json" };
-import addCapacity from "./migration/addCapacity/index.js";
+import addCapacity from "./scripts/addCapacity/index.js";
 
 const createDb = (dbPath) => {
 	const db = sqlite(dbPath);
